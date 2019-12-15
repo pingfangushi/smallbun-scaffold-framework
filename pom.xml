@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.smallbun.scaffold</groupId>
-    <artifactId>smallbun-scaffold-framework</artifactId>
+    <artifactId>smallbun-framework</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
     <description>smallbun企业级开发脚手架-单体应用框架包</description>
