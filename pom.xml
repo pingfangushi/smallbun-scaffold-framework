@@ -20,15 +20,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.smallbun.scaffold</groupId>
-    <artifactId>smallbun-framework</artifactId>
+    <artifactId>scaffold-framework</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
     <description>smallbun企业级开发脚手架-核心框架</description>
     <!--scm-->
     <scm>
         <connection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</connection>
-        <developerConnection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git
-        </developerConnection>
+        <developerConnection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</developerConnection>
         <url>http://github.com/pingfangushi/smallbun-scaffold-framework/tree/master</url>
     </scm>
     <!--开发人员信息-->
