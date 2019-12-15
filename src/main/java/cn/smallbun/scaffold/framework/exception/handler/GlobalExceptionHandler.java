@@ -145,8 +145,9 @@ public class GlobalExceptionHandler implements Serializable {
 	 */
 	@ExceptionHandler(value = InsufficientAuthenticationException.class)
 	public ResponseEntity<ApiRestResult> insufficientAuthenticationException(InsufficientAuthenticationException e) {
-		return new ResponseEntity<>(new ApiRestResult<>().message(e.getMessage()).result(getStackTraceAsString(e))
-				.status(String.valueOf(UNAUTHORIZED.value())), UNAUTHORIZED);
+		return new ResponseEntity<>(
+				new ApiRestResult<>().message(e.getLocalizedMessage()).result(UNAUTHORIZED.getReasonPhrase())
+						.status(String.valueOf(UNAUTHORIZED.value())), UNAUTHORIZED);
 	}
 
 	/**
@@ -157,8 +158,9 @@ public class GlobalExceptionHandler implements Serializable {
 	 */
 	@ExceptionHandler(value = AccessDeniedException.class)
 	public ResponseEntity<ApiRestResult> methodAccessDeniedException(AccessDeniedException e) {
-		return new ResponseEntity<>(new ApiRestResult<>().message(e.getMessage()).result(getStackTraceAsString(e))
-				.status(String.valueOf(FORBIDDEN.value())), FORBIDDEN);
+		return new ResponseEntity<>(
+				new ApiRestResult<>().message(e.getLocalizedMessage()).result(FORBIDDEN.getReasonPhrase())
+						.status(String.valueOf(FORBIDDEN.value())), FORBIDDEN);
 	}
 
 	/**
