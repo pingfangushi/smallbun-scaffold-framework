@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.smallbun.scaffold.framework.configurer.SmallBunConfigurer
+org.springframework.context.ApplicationListener=\
+cn.smallbun.scaffold.framework.license.SmallBunLicense
