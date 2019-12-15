@@ -23,7 +23,7 @@
     <artifactId>smallbun-framework</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
-    <description>smallbun企业级开发脚手架-单体应用框架包</description>
+    <description>smallbun企业级开发脚手架-核心框架</description>
     <!--scm-->
     <scm>
         <connection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</connection>

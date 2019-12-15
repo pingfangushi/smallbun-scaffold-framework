@@ -3,7 +3,7 @@
 ```
  <dependency>
     <groupId>cn.smallbun.scaffold</groupId>
-    <artifactId>smallbun-scaffold-framework</artifactId>
+    <artifactId>smallbun-framework</artifactId>
     <version>latest-version</version>
  </dependency>
 ```
