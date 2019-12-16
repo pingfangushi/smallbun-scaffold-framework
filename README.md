@@ -1,5 +1,6 @@
-# smallbun 企业级开发脚手架核心框架
+# 🚀smallbun 企业级开发脚手架核心框架
 
+# 使用方式
 ```
  <dependency>
     <groupId>cn.smallbun.scaffold</groupId>
