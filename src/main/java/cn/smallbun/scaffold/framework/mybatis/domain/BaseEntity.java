@@ -39,6 +39,8 @@ import lombok.experimental.Accessors;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BaseEntity<PK> extends IdEntity<PK> {
+	public static final String IS_DELETED = "isDeleted";
+	public static final String VERSION = "version";
 	/**
 	 * 乐观锁
 	 */

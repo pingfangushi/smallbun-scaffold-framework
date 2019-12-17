@@ -40,12 +40,6 @@ import static cn.smallbun.scaffold.framework.configurer.SmallBunDefaults.DEFAULT
 @Data
 @ConfigurationProperties(value = DEFAULT_PREFIX, ignoreUnknownFields = false)
 public class SmallBunProperties {
-
-	/**
-	 * http
-	 */
-	@NestedConfigurationProperty
-	private final Http http = new Http();
 	/**
 	 * 验证码
 	 */
@@ -91,49 +85,6 @@ public class SmallBunProperties {
 		 *
 		 */
 		String poweredBy = SmallBunDefaults.Project.POWERED_BY;
-	}
-
-	/**
-	 * Http
-	 * @author SanLi
-	 * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on  2019/5/8
-	 */
-	@Getter
-	@Setter
-	public static class Http {
-		/**
-		 * http版本
-		 */
-		public enum Version {
-			/**
-			 * HTTP 1
-			 */
-			V_1_1,
-			/**
-			 * HTTP 2
-			 */
-			V_2_0
-		}
-
-		/**
-		 * 缓存
-		 */
-		private final Cache cache = new Cache();
-
-		/**
-		 * HTTP 版本, 如果是 "V_1_1" (对于 HTTP/1.1) 或者 V_2_0 (对于 (HTTP/2)
-		 */
-		Version version = SmallBunDefaults.Http.VERSION;
-
-		/**
-		 * 缓存
-		 */
-		@Getter
-		@Setter
-		public static class Cache {
-
-			private int timeToLiveInDays = SmallBunDefaults.Http.Cache.TIME_TO_LIVE_IN_DAYS;
-		}
 	}
 
 
@@ -194,10 +145,6 @@ public class SmallBunProperties {
 		 * 重定向地址
 		 */
 		String isPhonePath = SmallBunDefaults.Web.IS_PHONE_PATH;
-		/**
-		 * rest接口统一请求前缀
-		 */
-		String restUnifiedPrefix = SmallBunDefaults.Web.REST_UNIFIED_PREFIX;
 	}
 
 	/**
@@ -207,13 +154,13 @@ public class SmallBunProperties {
 	@Setter
 	public static class Security {
 		/**
-		 * 全局用户名，超级管理员
-		 */
-		private String username = SmallBunDefaults.Security.USERNAME;
-		/**
 		 * ID
 		 */
 		private String id = SmallBunDefaults.Security.ID;
+		/**
+		 * 全局用户名，超级管理员
+		 */
+		private String username = SmallBunDefaults.Security.USERNAME;
 		/**
 		 * 密码
 		 */

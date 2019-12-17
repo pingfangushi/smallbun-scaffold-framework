@@ -27,22 +27,6 @@ public interface SmallBunDefaults {
 
 	String DEFAULT_PREFIX = "cn.smallbun.scaffold";
 
-
-	/**
-	 * HTTP
-	 */
-	interface Http {
-
-		SmallBunProperties.Http.Version VERSION = SmallBunProperties.Http.Version.V_1_1;
-
-		interface Cache {
-			/**
-			 * 4 年 (包括闰日)
-			 */
-			int TIME_TO_LIVE_IN_DAYS = 1461;
-		}
-	}
-
 	/**
 	 * 项目信息
 	 */
@@ -130,10 +114,6 @@ public interface SmallBunDefaults {
 		 * 如果是手机访问重定向地址
 		 */
 		String IS_PHONE_PATH = "";
-		/**
-		 * rest接口统一请求前缀，默认api
-		 */
-		String REST_UNIFIED_PREFIX = "/api";
 	}
 
 	/**

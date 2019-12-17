@@ -39,6 +39,11 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BaseAuditNodeEntity<PK, E extends BaseAuditNodeEntity> extends BaseNodeEntity<PK, E> {
+
+	public static final String CREATE_BY = "createBy";
+	public static final String CREATE_TIME = "createTime";
+	public static final String LAST_MODIFIED_BY = "lastModifiedBy";
+	public static final String LAST_MODIFIED_TIME = "lastModifiedTime";
 	/**
 	 * 创建者
 	 */
@@ -69,4 +74,5 @@ public class BaseAuditNodeEntity<PK, E extends BaseAuditNodeEntity> extends Base
 	@TableField(value = "last_modified_time", fill = FieldFill.INSERT_UPDATE)
 	@ApiModelProperty(hidden = true)
 	private LocalDateTime lastModifiedTime;
+
 }
