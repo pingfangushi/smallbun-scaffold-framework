@@ -31,10 +31,10 @@ import org.springframework.lang.Nullable;
 public class ListenerProcessor implements BeanPostProcessor {
 	/**
 	 * 初始化之前
-	 * @param bean
-	 * @param beanName
-	 * @return
-	 * @throws BeansException
+	 * @param bean {@link Object} bean
+	 * @param beanName {@link String} beanName
+	 * @return {@link Object}
+	 * @throws BeansException BeansException
 	 */
 	@Override
 	public Object postProcessBeforeInitialization(@Nullable Object bean, String beanName) throws BeansException {
@@ -43,10 +43,10 @@ public class ListenerProcessor implements BeanPostProcessor {
 
 	/**
 	 * bean初始化后
-	 * @param bean
-	 * @param beanName
-	 * @return
-	 * @throws BeansException
+	 * @param bean {@link Object} bean
+	 * @param beanName {@link String} beanName
+	 * @return {@link Object}
+	 * @throws BeansException BeansException
 	 */
 	@Override
 	public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) throws BeansException {

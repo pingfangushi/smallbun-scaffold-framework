@@ -70,7 +70,7 @@ public class HttpClientUtil {
 	 * @param url
 	 * @param method
 	 * @param params
-	 * @return
+	 * @return String
 	 */
 	public static String client(String url, HttpMethod method, MultiValueMap<String, String> params) {
 		RestTemplate client = new RestTemplate();
@@ -97,9 +97,8 @@ public class HttpClientUtil {
 	 *
 	 * @param
 	 * @param
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @return String
+	 * @throws IOException IOException
 	 */
 	public static String post(String url, Map<String, String> paramMap) throws IOException {
 		//获取DefaultHttpClient请求
@@ -114,7 +113,7 @@ public class HttpClientUtil {
 		return httpEntityContent;
 	}
 
-	public static HttpClientContext httpClientContext;
+	private static HttpClientContext httpClientContext;
 
 	static {
 		// 创建上下文.用于共享session id
@@ -167,8 +166,7 @@ public class HttpClientUtil {
 	 *
 	 * @param
 	 * @param （如JSON串）
-	 * @return
-	 * @throws ClientProtocolException
+	 * @return String
 	 * @throws IOException
 	 */
 	public static String post(String url, String data) throws IOException {
@@ -187,7 +185,7 @@ public class HttpClientUtil {
 	 * 封装HTTP GET方法
 	 *
 	 * @param
-	 * @return
+	 * @return String
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -207,7 +205,7 @@ public class HttpClientUtil {
 	 *
 	 * @param
 	 * @param
-	 * @return
+	 * @return String
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -239,7 +237,7 @@ public class HttpClientUtil {
 	 *
 	 * @param
 	 * @param
-	 * @return
+	 * @return String
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -260,7 +258,7 @@ public class HttpClientUtil {
 	 * 封装HTTP DELETE方法
 	 *
 	 * @param
-	 * @return
+	 * @return String
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -280,7 +278,7 @@ public class HttpClientUtil {
 	 *
 	 * @param
 	 * @param
-	 * @return
+	 * @return String
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -301,7 +299,7 @@ public class HttpClientUtil {
 	 * 设置请求参数
 	 *
 	 * @param
-	 * @return
+	 * @return List
 	 */
 	private static List<NameValuePair> setHttpParams(Map<String, String> paramMap) {
 		List<NameValuePair> formParams = new ArrayList<>();
@@ -316,7 +314,7 @@ public class HttpClientUtil {
 	 * 获得响应HTTP实体内容
 	 *
 	 * @param response
-	 * @return
+	 * @return String
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 */
@@ -336,6 +334,12 @@ public class HttpClientUtil {
 		return "";
 	}
 
+	/**
+	 * doGet
+	 * @param url
+	 * @param param
+	 * @return String
+	 */
 	public static String doGet(String url, Map<String, String> param) {
 		// 创建HttpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -384,8 +388,7 @@ public class HttpClientUtil {
 	 *
 	 * @param url
 	 * @param param
-	 * @return
-	 * @throws Exception
+	 * @return String
 	 */
 	public static String doPost(String url, Map<String, String> param) {
 		/* 创建HttpClient对象 */
@@ -430,7 +433,7 @@ public class HttpClientUtil {
 	/**
 	 * @param url  发送的地址
 	 * @param json JSON数据
-	 * @return
+	 * @return String
 	 */
 	public static String doPostJson(String url, String json) {
 		// 创建HttpClient对象
@@ -465,8 +468,7 @@ public class HttpClientUtil {
 	 *
 	 * @param url
 	 * @param param
-	 * @return
-	 * @throws Exception
+	 * @return String
 	 */
 	public static String postRequestByFormEntity(String url, UrlEncodedFormEntity param) {
 		String res = null;
@@ -491,8 +493,8 @@ public class HttpClientUtil {
 
 	/**
 	 * 返回发送的数据
-	 *
-	 * @throws UnsupportedEncodingException
+	 * @param param
+	 * @return UrlEncodedFormEntity
 	 */
 	public static UrlEncodedFormEntity buildPairList(Map<String, String> param) {
 		try {

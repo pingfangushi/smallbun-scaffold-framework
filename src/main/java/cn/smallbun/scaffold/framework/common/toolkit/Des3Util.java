@@ -45,8 +45,7 @@ public class Des3Util {
 	 * 3DES加密
 	 *
 	 * @param plainText 普通文本
-	 * @return
-	 * @throws Exception
+	 * @return String
 	 */
 	public static String encode(String plainText, String key, String encoding) {
 		try {
@@ -68,8 +67,7 @@ public class Des3Util {
 	 * 3DES解密
 	 *
 	 * @param encryptText 加密文本
-	 * @return
-	 * @throws Exception
+	 * @return String
 	 */
 	public static String decode(String encryptText, String key, String encoding) {
 		try {

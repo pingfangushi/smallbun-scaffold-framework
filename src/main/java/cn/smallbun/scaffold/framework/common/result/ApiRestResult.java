@@ -57,21 +57,39 @@ public class ApiRestResult<T> implements Serializable {
 	public ApiRestResult() {
 	}
 
+	/**
+	 * ApiRestResult
+	 * @param status {@link String}
+	 * @param message {@link String}
+	 * @param result {@link String}
+	 */
 	private ApiRestResult(String status, String message, T result) {
 		this.status = status;
 		this.message = message;
 		this.result = result;
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#result(Object)
+	 */
 	public ApiRestResult<T> result(T result) {
 		this.result = result;
 		return this;
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#getResult()
+	 */
 	public T getResult() {
 		return result;
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#getStatus()
+	 */
 	public String getStatus() {
 		if (StringUtils.isBlank(status)) {
 			return String.valueOf(HttpStatus.OK.value());
@@ -79,11 +97,20 @@ public class ApiRestResult<T> implements Serializable {
 		return status;
 	}
 
+	/**
+	 * status
+	 * @param status {@link String } status
+	 * @return {@link ApiRestResult}
+	 */
 	public ApiRestResult<T> status(String status) {
 		this.status = status;
 		return this;
 	}
 
+	/**
+	 * getMessage
+	 * @return {@link String} message
+	 */
 	public String getMessage() {
 		if (StringUtils.isBlank(message)) {
 			return "操作成功";
@@ -91,17 +118,19 @@ public class ApiRestResult<T> implements Serializable {
 		return message;
 	}
 
+	/**
+	 * message
+	 * @param msg msg
+	 * @return {@link ApiRestResult}
+	 */
 	public ApiRestResult<T> message(String msg) {
 		this.message = msg;
 		return this;
 	}
 
 	/**
-	 **
-	 * 成功
-	 *
-	 * @param data 响应结果
-	 * @return 结果
+	 * (non-Javadoc)
+	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#ok(Object)
 	 */
 	public static <T> ApiRestResult<T> ok(T data) {
 		return new ApiRestResult<>(SUCCESS, "操作成功", data);
@@ -109,8 +138,8 @@ public class ApiRestResult<T> implements Serializable {
 
 	/**
 	 * 成功 data null
-	 *
-	 * @return 成功结果
+	 * @param <T> type
+	 * @return {@link ApiRestResult}
 	 */
 	public static <T> ApiRestResult<T> ok() {
 		return new ApiRestResult<>(SUCCESS, "操作成功", null);
@@ -118,8 +147,8 @@ public class ApiRestResult<T> implements Serializable {
 
 	/**
 	 * 默认服务器内部错误
-	 *
-	 * @return 返回结果
+	 * @param <T> type
+	 * @return {@link ApiRestResult}
 	 */
 	public static <T> ApiRestResult<T> err() {
 		return new ApiRestResult<>(EX900001.getCode(), EX900001.getMessage(), null);
@@ -127,8 +156,9 @@ public class ApiRestResult<T> implements Serializable {
 
 	/**
 	 * 默认服务器内部错误
-	 *
-	 * @return 返回结果
+	 * @param <T> type
+	 * @param data data
+	 * @return {@link ApiRestResult}
 	 */
 	public static <T> ApiRestResult<T> err(T data) {
 		return new ApiRestResult<>(EX900001.getCode(), EX900001.getMessage(), data);
@@ -137,20 +167,27 @@ public class ApiRestResult<T> implements Serializable {
 	/**
 	 * 自定义 错误码和错误信息
 	 *
-	 * @param msg  错误信息
-	 * @param code 错误码
-	 * @return 返回结果
+	 * @param msg  {@link String }
+	 * @param code  {@link String } 错误码
+	 * @return  {@link ApiRestResult}
 	 */
 	public static <T> ApiRestResult<T> err(String msg, String code) {
 		return new ApiRestResult<>(code, msg, null);
 	}
 
+	/**
+	 * toString
+	 * @return {@link String}
+	 */
 	@Override
 	public String toString() {
-		return "ApiRestResult{" + "result=" + result + ", status='" + status + '\'' + ", message='" + message + '\''
-				+ "} " + super.toString();
+		return "ApiRestResult{" + "result=" + result + ", status='" + status + '\'' + ", message='" + message + '\'' + "} " + super.toString();
 	}
 
+	/**
+	 * build
+	 * @return {@link ApiRestResult}
+	 */
 	public ApiRestResult<T> build() {
 		return new ApiRestResult<>(this.status, this.message, this.result);
 	}

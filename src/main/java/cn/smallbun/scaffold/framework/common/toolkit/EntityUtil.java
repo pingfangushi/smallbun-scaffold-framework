@@ -33,7 +33,7 @@ public class EntityUtil {
 	 * @param clazz2
 	 * @param <T1>
 	 * @param <T2>
-	 * @return
+	 * @return Object
 	 */
 	public static <T1, T2> T2 copyData(T1 obj, Class<T2> clazz2) {
 		//1. 获取源数据的类
@@ -64,7 +64,7 @@ public class EntityUtil {
 	 * @param fieldNames
 	 * @param <T1>
 	 * @param <T2>
-	 * @return
+	 * @return Object
 	 */
 	public static <T1, T2> T2 copyData(T1 obj, Class<T2> clazz2, String[] fieldNames) {
 		//1. 获取源数据的类
@@ -131,7 +131,7 @@ public class EntityUtil {
 	 *
 	 * @param tClass
 	 * @param <T>
-	 * @return
+	 * @return Object
 	 */
 	public static <T> T getInstance(Class<T> tClass) {
 		try {

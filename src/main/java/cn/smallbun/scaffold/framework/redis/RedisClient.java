@@ -346,7 +346,7 @@ public class RedisClient {
 	 * 将数据放入set缓存
 	 * @param key 键
 	 * @param values 值 可以是多个
-	 * @return 成功个数
+	 * @return {@link Long} 成功个数
 	 */
 	public long sSet(Object key, Object... values) {
 		try {
@@ -362,7 +362,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param time 时间(秒)
 	 * @param values 值 可以是多个
-	 * @return 成功个数
+	 * @return  {@link Long} 成功个数
 	 */
 	public long sSetAndTime(Object key, long time, Object... values) {
 		try {
@@ -380,7 +380,7 @@ public class RedisClient {
 	/**
 	 * 获取set缓存的长度
 	 * @param key 键
-	 * @return
+	 * @return {@link Long}
 	 */
 	public long sGetSetSize(Object key) {
 		try {
@@ -399,8 +399,7 @@ public class RedisClient {
 	 */
 	public long setRemove(Object key, Object... values) {
 		try {
-			Long count = redisTemplate.opsForSet().remove(key, values);
-			return count;
+			return redisTemplate.opsForSet().remove(key, values);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -413,7 +412,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param start 开始
 	 * @param end 结束  0 到 -1代表所有值
-	 * @return
+	 * @return {@link List<Object>}
 	 */
 	public List<Object> lGet(Object key, long start, long end) {
 		try {
@@ -427,7 +426,7 @@ public class RedisClient {
 	/**
 	 * 获取list缓存的长度
 	 * @param key 键
-	 * @return
+	 * @return {@link Long}
 	 */
 	public long lGetListSize(Object key) {
 		try {
@@ -440,9 +439,9 @@ public class RedisClient {
 
 	/**
 	 * 通过索引 获取list中的值
-	 * @param key 键
-	 * @param index 索引  index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
-	 * @return
+	 * @param key {@link Object} 键
+	 * @param index {@link Long} 索引  index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
+	 * @return {@link Object}
 	 */
 	public Object lGetIndex(Object key, long index) {
 		try {
@@ -457,7 +456,7 @@ public class RedisClient {
 	 * 将list放入缓存
 	 * @param key 键
 	 * @param value 值
-	 * @return
+	 * @return {@link Boolean} boolean
 	 */
 	public boolean lSet(Object key, Object value) {
 		try {
@@ -474,7 +473,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param value 值
 	 * @param time 时间(秒)
-	 * @return
+	 * @return {@link Boolean} boolean
 	 */
 	public boolean lSet(Object key, Object value, long time) {
 		try {
@@ -493,7 +492,7 @@ public class RedisClient {
 	 * 将list放入缓存
 	 * @param key 键
 	 * @param value 值
-	 * @return
+	 * @return {@link Boolean} boolean
 	 */
 	public boolean lSetList(Object key, List<Object> value) {
 		try {
@@ -510,7 +509,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param value 值
 	 * @param time 时间(秒)
-	 * @return
+	 * @return {@link Boolean} boolean
 	 */
 	public boolean lSet(Object key, List<Object> value, long time) {
 		try {
@@ -530,7 +529,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param index 索引
 	 * @param value 值
-	 * @return
+	 * @return {@link Boolean} boolean
 	 */
 	public boolean lUpdateIndex(Object key, long index, Object value) {
 		try {

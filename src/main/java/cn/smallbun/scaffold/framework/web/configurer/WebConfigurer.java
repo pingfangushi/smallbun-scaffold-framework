@@ -66,7 +66,7 @@ public class WebConfigurer implements WebMvcConfigurer, WebMvcRegistrations {
 
 	/**
 	 * 消息转换
-	 * @param converters {@link List<HttpMessageConverter>}
+	 * @param converters
 	 */
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

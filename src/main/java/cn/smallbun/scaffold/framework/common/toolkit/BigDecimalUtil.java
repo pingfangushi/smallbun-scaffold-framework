@@ -32,7 +32,7 @@ public class BigDecimalUtil {
 	 *
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return int
 	 */
 	public static int compare(BigDecimal first, BigDecimal second) {
 		return first.compareTo(second);
@@ -43,7 +43,7 @@ public class BigDecimalUtil {
 	 *
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return BigDecimal
 	 */
 	public static BigDecimal plus(BigDecimal first, BigDecimal second) {
 		return first.add(second);
@@ -54,7 +54,7 @@ public class BigDecimalUtil {
 	 *
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return BigDecimal
 	 */
 	public static BigDecimal subtract(BigDecimal first, BigDecimal second) {
 		return first.subtract(second);
@@ -65,7 +65,7 @@ public class BigDecimalUtil {
 	 *
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return BigDecimal
 	 */
 	public static BigDecimal multiply(BigDecimal first, BigDecimal second) {
 		return first.multiply(second);
@@ -76,7 +76,7 @@ public class BigDecimalUtil {
 	 *
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return BigDecimal
 	 */
 	public static BigDecimal divide(BigDecimal first, BigDecimal second) {
 		return first.divide(second);

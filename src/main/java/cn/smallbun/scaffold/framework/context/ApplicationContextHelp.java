@@ -36,6 +36,11 @@ public class ApplicationContextHelp implements ApplicationContextAware {
 	 */
 	private static ApplicationContext applicationContext;
 
+	/**
+	 * 构造函数
+	 * @param applicationContext {@link ApplicationContext}
+	 * @throws BeansException  BeansException
+	 */
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		ApplicationContextHelp.applicationContext = applicationContext;
@@ -43,7 +48,7 @@ public class ApplicationContextHelp implements ApplicationContextAware {
 
 	/**
 	 * 获取applicationContext
-	 * @return
+	 * @return {@link ApplicationContext}
 	 */
 	public static ApplicationContext getApplicationContext() {
 		return applicationContext;
@@ -51,8 +56,8 @@ public class ApplicationContextHelp implements ApplicationContextAware {
 
 	/**
 	 * 通过name获取 Bean.
-	 * @param name
-	 * @return
+	 * @param name {@link String} name
+	 * @return {@link Object}
 	 */
 	public static Object getBean(String name) {
 		return getApplicationContext().getBean(name);
@@ -60,9 +65,9 @@ public class ApplicationContextHelp implements ApplicationContextAware {
 
 	/**
 	 * 通过class获取Bean.
-	 * @param clazz
-	 * @param <T>
-	 * @return
+	 * @param clazz {@link Class}
+	 * @param <T> type
+	 * @return {@link Object}
 	 */
 	public static <T> T getBean(Class<T> clazz) {
 		return getApplicationContext().getBean(clazz);
@@ -70,10 +75,10 @@ public class ApplicationContextHelp implements ApplicationContextAware {
 
 	/**
 	 * 通过name,以及Clazz返回指定的Bean
-	 * @param name
-	 * @param clazz
-	 * @param <T>
-	 * @return
+	 * @param name {@link String}
+	 * @param clazz {@link Class}
+	 * @param <T> type
+	 * @return T
 	 */
 	public static <T> T getBean(String name, Class<T> clazz) {
 		return getApplicationContext().getBean(name, clazz);

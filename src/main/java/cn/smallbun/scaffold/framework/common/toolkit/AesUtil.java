@@ -76,7 +76,7 @@ public class AesUtil {
 	 *
 	 * @param key     密钥信息
 	 * @param content 待加密信息
-	 * @return
+	 * @return byte[]
 	 * @throws Exception
 	 */
 	public static byte[] decryptAes(byte[] key, byte[] content) throws Exception {
@@ -144,7 +144,7 @@ public class AesUtil {
 	 * 把字节数组转换成16进制字符串
 	 *
 	 * @param bArray
-	 * @return
+	 * @return byte[]
 	 */
 	public static String bytesToHexString(byte[] bArray) {
 		StringBuilder sb = new StringBuilder(bArray.length);
@@ -163,7 +163,7 @@ public class AesUtil {
 	 * 把16进制字符串转换成字节数组
 	 *
 	 * @param hex
-	 * @return
+	 * @return byte[]
 	 */
 	public static byte[] hexStringToByte(String hex) {
 		int len = (hex.length() / 2);

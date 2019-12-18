@@ -50,7 +50,7 @@ public class DateUtil {
 	 *
 	 * @param date
 	 * @param pattern
-	 * @return
+	 * @return Date
 	 */
 	public static Date str2Date(String date, String pattern) {
 		Date d = null;
@@ -78,7 +78,7 @@ public class DateUtil {
 	 *
 	 * @param date
 	 * @param pattern
-	 * @return
+	 * @return Date
 	 */
 	public static Date strToDate(String date, String pattern) {
 		Date d = null;
@@ -96,7 +96,7 @@ public class DateUtil {
 	 * 方法说明：字符类型装成默认的时间格式
 	 *
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date str2Date(String date) {
 		return str2Date(date, DEFAULT_DATE_PATTERN);
@@ -106,7 +106,7 @@ public class DateUtil {
 	 * 方法说明：字符类型装成默认的时间格式
 	 *
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date strToDate(String date) {
 		return strToDate(date, DEFAULT_DATE_PATTERN);
@@ -116,7 +116,7 @@ public class DateUtil {
 	 * 方法说明：字符类型转成timestamp的时间格式
 	 *
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date str2DateDetail(String date) {
 		return str2Date(date, DATE_PATTERN_DETAIL);
@@ -126,7 +126,7 @@ public class DateUtil {
 	 * 时间转成字符串
 	 *
 	 * @param date
-	 * @return
+	 * @return String
 	 */
 	public static String date2Str(Date date, String pattern) {
 		if (date == null) {
@@ -140,7 +140,7 @@ public class DateUtil {
 	 * 时间转换成字符串-默认格式"yyyy-MM-dd"
 	 *
 	 * @param date
-	 * @return
+	 * @return String
 	 */
 	public static String date2Str(Date date) {
 		return date2Str(date, DEFAULT_DATE_PATTERN);
@@ -151,7 +151,7 @@ public class DateUtil {
 	 *
 	 * @param date 某个时间
 	 * @param days 需要添加的时间
-	 * @return
+	 * @return Date
 	 */
 	public static Date addDays(Date date, int days) {
 		Calendar cal = Calendar.getInstance();
@@ -163,7 +163,7 @@ public class DateUtil {
 	/**
 	 * 格式化时间
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getNowtimeStr() {
 		Calendar cal = Calendar.getInstance();
@@ -174,7 +174,7 @@ public class DateUtil {
 	 * 方法说明：给日期加上一天
 	 *
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date addDay(Date date) {
 		Calendar cal = Calendar.getInstance();
@@ -188,7 +188,7 @@ public class DateUtil {
 	 *
 	 * @param date   某个时间
 	 * @param months 需要添加月数
-	 * @return
+	 * @return Date
 	 */
 	public static Date addMonths(Date date, int months) {
 		Calendar cal = Calendar.getInstance();
@@ -202,7 +202,7 @@ public class DateUtil {
 	 *
 	 * @param date
 	 * @param years
-	 * @return
+	 * @return Date
 	 */
 	public static Date addYears(Date date, int years) {
 		Calendar cal = Calendar.getInstance();
@@ -214,7 +214,7 @@ public class DateUtil {
 	/**
 	 * 取得当前日期
 	 *
-	 * @return
+	 * @return Date
 	 */
 	public static Date getCurrentDate() {
 		Calendar calendar = Calendar.getInstance();
@@ -224,7 +224,7 @@ public class DateUtil {
 	/**
 	 * 取当前日期字符串"yyyy-MM-dd"
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getCurrentDateStr() {
 		SimpleDateFormat newstr = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
@@ -234,7 +234,7 @@ public class DateUtil {
 	/**
 	 * 取当前日期字符串"yyyy-MM-dd"
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getCurrentDateStr(String pattern) {
 		SimpleDateFormat newstr = new SimpleDateFormat(pattern);
@@ -244,7 +244,7 @@ public class DateUtil {
 	/**
 	 * 获取当前时间往前一个月的开始日期
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getOneMonthStartDate() {
 		SimpleDateFormat newstr = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
@@ -257,7 +257,7 @@ public class DateUtil {
 	/**
 	 * 获取当前时间往前一个月的结束日期
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getOneMonthEndDate() {
 		SimpleDateFormat newstr = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
@@ -269,7 +269,7 @@ public class DateUtil {
 	 *
 	 * @param date1
 	 * @param date2
-	 * @return
+	 * @return int
 	 */
 	public static int compareDate(Date date1, Date date2) {
 		long day1 = date1.getTime();
@@ -300,7 +300,7 @@ public class DateUtil {
 	 * 方法说明：将指定时间重置为当天凌晨时间
 	 *
 	 * @param date
-	 * @return
+	 * @return Date
 	 */
 	public static Date moveBeginOfDay(Date date) {
 		Calendar c = Calendar.getInstance();
@@ -315,7 +315,7 @@ public class DateUtil {
 	/**
 	 * 获取当前时间一年的日期
 	 *
-	 * @return
+	 * @return Date
 	 */
 	public static Date getOneYearStartDate() {
 		Calendar calendar = Calendar.getInstance();
@@ -332,7 +332,7 @@ public class DateUtil {
 	/**
 	 * 获取当月初时间
 	 *
-	 * @return
+	 * @return Date
 	 */
 	public static Date getCurrentMonthBegin() {
 		Calendar cal = Calendar.getInstance();
@@ -343,8 +343,9 @@ public class DateUtil {
 	/**
 	 * 获取指定年份开始时间
 	 *
-	 * @return
-	 * @throws ParseException
+	 * @return yearStr
+	 * @throws ParseException ParseException
+	 * @return Date
 	 */
 	public static Date getYearBegin(String yearStr) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -363,14 +364,14 @@ public class DateUtil {
 	 * 方法说明：根据年月获取初始日期
 	 *
 	 * @param yearMonth
-	 * @return
+	 * @return Date
 	 */
 	public static Date getDateFromYearMonth(String yearMonth) {
 		DateFormat ym = new SimpleDateFormat("yyyy-MM");
 		Date date = null;
 		try {
 			date = ym.parse(yearMonth);
-		} catch (ParseException e) {
+		} catch (ParseException ignored) {
 		}
 		return date;
 	}
@@ -379,14 +380,14 @@ public class DateUtil {
 	 * 方法说明：根据年月日获取日期
 	 *
 	 * @param yearMonth
-	 * @return
+	 * @return Date
 	 */
 	public static Date getDateFromYearMonthDay(String yearMonth) {
 		DateFormat ym = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
 			date = ym.parse(yearMonth);
-		} catch (ParseException e) {
+		} catch (ParseException ignored) {
 		}
 		return date;
 	}
@@ -394,22 +395,20 @@ public class DateUtil {
 	/**
 	 * 获取这个月的年份
 	 *
-	 * @return
+	 * @return int
 	 */
 	public static int getThisMonthOfYear() {
 		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
-		return month;
+		return cal.get(Calendar.MONTH) + 1;
 	}
 
 	/**
 	 * 获取毫秒的数据
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getMillisecondStr() {
-		String result = date2Str(getCurrentDate(), "yyMMddHHmmssSSS");
-		return result;
+		return date2Str(getCurrentDate(), "yyMMddHHmmssSSS");
 	}
 
 	/**
@@ -418,7 +417,7 @@ public class DateUtil {
 	 * @param smdate 较小的时间
 	 * @param bdate  较大的时间
 	 * @return 相差天数
-	 * @throws ParseException
+	 * @throws ParseException ParseException
 	 */
 	public static int daysBetween(Date smdate, Date bdate) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
@@ -435,6 +434,7 @@ public class DateUtil {
 
 	/**
 	 * 计算两个时间差
+	 * @return String
 	 */
 	public static String getDatePoor(Date endDate, Date nowDate) {
 		long nd = 1000 * 24 * 60 * 60;
@@ -456,6 +456,7 @@ public class DateUtil {
 
 	/**
 	 * 获取服务器启动时间
+	 * @return Date
 	 */
 	public static Date getServerStartDate() {
 		long time = ManagementFactory.getRuntimeMXBean().getStartTime();
