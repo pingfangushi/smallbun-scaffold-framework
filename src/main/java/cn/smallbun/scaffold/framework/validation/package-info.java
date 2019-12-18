@@ -16,6 +16,7 @@
 
 
 /**
+ * 验证相关
  * @author SanLi
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/8/18 16:56
  */

@@ -14,10 +14,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 /**
- * 针对mybatis 封装
+ * domain
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/6/20 20:12
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/18 13:48
  */
-package cn.smallbun.scaffold.framework.mybatis;
+package cn.smallbun.scaffold.framework.security.domain;

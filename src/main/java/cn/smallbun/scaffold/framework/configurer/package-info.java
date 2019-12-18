@@ -16,7 +16,7 @@
 
 
 /**
- * 此模块主要是提供自动配置
+ * 系统自动配置模块
  * @author SanLi
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/5/8 9:39
  */

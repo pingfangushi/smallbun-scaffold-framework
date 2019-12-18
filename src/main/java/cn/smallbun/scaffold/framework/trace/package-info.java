@@ -16,8 +16,8 @@
 
 
 /**
- * 针对mybatis 封装
+ * 针对sl4j mdc封装，实现trace追踪
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/6/20 20:12
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/8/18 16:56
  */
-package cn.smallbun.scaffold.framework.mybatis;
+package cn.smallbun.scaffold.framework.trace;

@@ -14,9 +14,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 /**
+ * 日志domain
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/6/21 9:22
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/18 13:43
  */
-package cn.smallbun.scaffold.framework.datascope.enums;
+package cn.smallbun.scaffold.framework.logger.domain;

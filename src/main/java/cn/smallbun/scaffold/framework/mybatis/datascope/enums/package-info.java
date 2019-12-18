@@ -16,7 +16,8 @@
 
 
 /**
+ * 数据权限
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/8/19 8:28
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/6/21 9:22
  */
-package cn.smallbun.scaffold.framework.datascope;
+package cn.smallbun.scaffold.framework.mybatis.datascope.enums;

@@ -17,7 +17,7 @@
  */
 
 
-package cn.smallbun.scaffold.framework.datascope.enums;
+package cn.smallbun.scaffold.framework.mybatis.datascope.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 

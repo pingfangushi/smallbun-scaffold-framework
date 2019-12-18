@@ -41,7 +41,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static cn.smallbun.scaffold.framework.address.Address.getCityInfoByDb;
+import static cn.smallbun.scaffold.framework.common.address.Address.getCityInfoByDb;
 import static cn.smallbun.scaffold.framework.common.toolkit.UserAgentUtil.getUserAgent;
 import static cn.smallbun.scaffold.framework.security.domain.User.ANONYMOUS_USER;
 
