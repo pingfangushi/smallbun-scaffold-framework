@@ -342,6 +342,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <doctitle>smallbun 企业级开发脚手架核心框架 ${project.version}</doctitle>
                     <encoding>UTF-8</encoding>
                     <charset>UTF-8</charset>
                     <additionalOptions>
@@ -408,7 +409,7 @@
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <updatePomFile>true</updatePomFile>
+                    <updatePomFile>false</updatePomFile>
                 </configuration>
                 <executions>
                     <execution>
