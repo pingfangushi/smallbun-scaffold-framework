@@ -30,11 +30,11 @@ public class RandomUtil {
 	/**
 	 * 生成六位随机数
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String random() {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		//添加三位随机数
 		//生成三个 0-9
 		int num1, num2, num3, num4, num5, num6;
@@ -55,8 +55,8 @@ public class RandomUtil {
 	/**
 	 * 获得指定长度随机数
 	 *
-	 * @param length
-	 * @return
+	 * @param length length
+	 * @return String
 	 */
 	public static String random(int length) {
 		String result = "";

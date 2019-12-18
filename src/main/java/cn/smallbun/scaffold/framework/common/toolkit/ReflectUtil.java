@@ -38,18 +38,18 @@ public class ReflectUtil {
 	/**
 	 * 获取成员变量的修饰符
 	 *
-	 * @param clazz
-	 * @param field
-	 * @return
-	 * @throws Exception
+	 * @param clazz clazz
+	 * @param field field
+	 * @return int
+	 * @throws Exception Exception
 	 */
 	public static <T> int getFieldModifier(Class<T> clazz, String field) throws Exception {
 		//getDeclaredFields可以获取所有修饰符的成员变量，包括private,protected等getFields则不可以
 		Field[] fields = getFields(clazz);
 
-		for (int i = 0; i < fields.length; i++) {
-			if (fields[i].getName().equals(field)) {
-				return fields[i].getModifiers();
+		for (Field value : fields) {
+			if (value.getName().equals(field)) {
+				return value.getModifiers();
 			}
 		}
 		throw new Exception(clazz + " has no field \"" + field + "\"");
@@ -58,45 +58,44 @@ public class ReflectUtil {
 	/**
 	 * 获取成员方法的修饰符
 	 *
-	 * @param clazz
-	 * @param method
-	 * @return
-	 * @throws Exception
+	 * @param clazz clazz
+	 * @param method method
+	 * @return int
+	 * @throws Exception Exception
 	 */
 	public static <T> int getMethodModifier(Class<T> clazz, String method) throws Exception {
 
 		/*getDeclaredMethods可以获取所有修饰符的成员方法，包括private,protected等getMethods()则不可以*/
 		Method[] m = clazz.getDeclaredMethods();
 
-		for (int i = 0; i < m.length; i++) {
-			if (m[i].getName().equals(m)) {
-				return m[i].getModifiers();
+		for (Method value : m) {
+			if (value.getName().equals(method)) {
+				return value.getModifiers();
 			}
 		}
-		throw new Exception(clazz + " has no method \"" + m + "\"");
+		throw new Exception(clazz + " has no method \"" + method + "\"");
 	}
 
 	/**
 	 * 根据成员变量名称获取对象值
 	 *
-	 * @param clazzInstance
-	 * @param field
-	 * @return
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws NoSuchFieldException
-	 * @throws SecurityException
+	 * @param clazzInstance clazzInstance
+	 * @param field  field
+	 * @return Object
+	 * @throws IllegalAccessException IllegalAccessException
+	 * @throws IllegalArgumentException IllegalArgumentException
+	 * @throws SecurityException SecurityException
 	 */
 	public static <T> Object getFieldValue(Object clazzInstance, Object field)
 			throws IllegalArgumentException, IllegalAccessException {
 
 		Field[] fields = getFields(clazzInstance.getClass());
 
-		for (int i = 0; i < fields.length; i++) {
-			if (fields[i].getName().equals(field)) {
+		for (Field value : fields) {
+			if (value.getName().equals(field)) {
 				//对于私有变量的访问权限，在这里设置，这样即可访问Private修饰的变量
-				fields[i].setAccessible(true);
-				return fields[i].get(clazzInstance);
+				value.setAccessible(true);
+				return value.get(clazzInstance);
 			}
 		}
 		return null;
@@ -105,23 +104,23 @@ public class ReflectUtil {
 	/**
 	 * 根据成员变量名称获取类值（默认值）
 	 *
-	 * @param clazz
-	 * @param field
-	 * @return
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
+	 * @param clazz clazz
+	 * @param field field
+	 * @return Object
+	 * @throws IllegalArgumentException IllegalArgumentException
+	 * @throws IllegalAccessException IllegalAccessException
+	 * @throws InstantiationException InstantiationException
 	 */
 	public static <T> Object getFieldValue(Class<T> clazz, String field)
 			throws IllegalArgumentException, IllegalAccessException, InstantiationException {
 
 		Field[] fields = getFields(clazz);
 
-		for (int i = 0; i < fields.length; i++) {
-			if (fields[i].getName().equals(field)) {
+		for (Field value : fields) {
+			if (value.getName().equals(field)) {
 				//对于私有变量的访问权限，在这里设置，这样即可访问Private修饰的变量
-				fields[i].setAccessible(true);
-				return fields[i].get(clazz.newInstance());
+				value.setAccessible(true);
+				return value.get(clazz.newInstance());
 			}
 		}
 
@@ -147,9 +146,9 @@ public class ReflectUtil {
 	/**
 	 * 返回指定字段
 	 *
-	 * @param clazz
-	 * @param fieldName
-	 * @return
+	 * @param clazz clazz
+	 * @param fieldName fieldName
+	 * @return Object
 	 */
 	public static <T> Field getField(Class<T> clazz, String fieldName) {
 		try {
@@ -167,7 +166,7 @@ public class ReflectUtil {
 	/**
 	 * 获取所有的成员变量 (包含父类的成员变量)
 	 *
-	 * @param clazz
+	 * @param clazz clazz
 	 * @return Field[]
 	 */
 	public static <T> Field[] getFields(Class<T> clazz) {
@@ -184,7 +183,7 @@ public class ReflectUtil {
 	/**
 	 * 获取所有的方法  (包含父类的方法 )
 	 *
-	 * @param clazz
+	 * @param clazz clazz
 	 * @return Field[]
 	 */
 	public static <T> Method[] getMethods(Class<T> clazz) {
@@ -200,7 +199,8 @@ public class ReflectUtil {
 	/**
 	 * 获取指定的方法 (包含父类的方法)
 	 *
-	 * @param clazz
+	 * @param clazz clazz
+	 * @param methodName methodName
 	 * @return Method
 	 */
 	public static <T> Method getMethod(Class<T> clazz, String methodName) {
@@ -225,19 +225,19 @@ public class ReflectUtil {
 	 * 1. Field的Modifiers==Private
 	 * 2. Field的Type属于基本类型
 	 *
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @return object
 	 */
 	public static <T> Field[] getPersistFields(Class<T> clazz) {
 		Field[] fields = getFields(clazz);
 
 		List<Field> result = Lists.newArrayList();
 
-		for (int i = 0; i < fields.length; i++) {
-			if (fields[i].getModifiers() != Modifier.PRIVATE) {
+		for (Field field : fields) {
+			if (field.getModifiers() != Modifier.PRIVATE) {
 				continue;
 			}
-			result.add(fields[i]);
+			result.add(field);
 		}
 
 		return result.toArray(new Field[]{});
@@ -308,6 +308,4 @@ public class ReflectUtil {
 			e.printStackTrace();
 		}
 	}
-
-
 }

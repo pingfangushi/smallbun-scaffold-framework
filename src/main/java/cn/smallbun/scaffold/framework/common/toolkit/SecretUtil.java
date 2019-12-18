@@ -40,7 +40,8 @@ public class SecretUtil {
 	 * 加密方法
 	 *
 	 * @param src 源数据的字节数组
-	 * @return
+	 * @param key key
+	 * @return byte[]
 	 */
 	public static byte[] encryptMode(byte[] src, String key) {
 		try {
@@ -61,7 +62,7 @@ public class SecretUtil {
 	 * 解密函数
 	 *
 	 * @param src 密文的字节数组
-	 * @return
+	 * @return byte[]
 	 */
 	public static byte[] decryptMode(byte[] src, String key) {
 		try {
@@ -80,8 +81,8 @@ public class SecretUtil {
 	 * 根据字符串生成密钥字节数组
 	 *
 	 * @param keyStr 密钥字符串
-	 * @return
-	 * @throws UnsupportedEncodingException
+	 * @return byte[]
+	 * @throws UnsupportedEncodingException UnsupportedEncodingException
 	 */
 	public static byte[] build3DesKey(String keyStr) throws UnsupportedEncodingException {
 		// 声明一个24位的字节数组，默认里面都是0

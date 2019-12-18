@@ -169,7 +169,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
 	/**
 	 * 封装分页数据和字段
 	 * @param page  {@link PageModel} page
-	 * @return {@link Page<T>}
+	 * @return {@link Page}
 	 */
 	public Page<T> getPage(PageModel page) {
 		try {

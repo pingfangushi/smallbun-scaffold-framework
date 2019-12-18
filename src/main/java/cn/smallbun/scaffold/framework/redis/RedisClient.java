@@ -153,7 +153,7 @@ public class RedisClient {
 	 * 递增
 	 * @param key 键
 	 * @param delta 要增加几(大于0)
-	 * @return
+	 * @return long
 	 */
 	public long incr(Object key, long delta) {
 		if (delta < 0) {
@@ -166,7 +166,7 @@ public class RedisClient {
 	 * 递减
 	 * @param key 键
 	 * @param delta 要减少几(小于0)
-	 * @return
+	 * @return long
 	 */
 	public long decr(Object key, long delta) {
 		if (delta < 0) {
@@ -294,7 +294,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param item 项
 	 * @param by 要增加几(大于0)
-	 * @return
+	 * @return double
 	 */
 	public double hincr(Object key, String item, double by) {
 		return redisTemplate.opsForHash().increment(key, item, by);
@@ -305,7 +305,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param item 项
 	 * @param by 要减少记(小于0)
-	 * @return
+	 * @return double
 	 */
 	public double hdecr(Object key, String item, double by) {
 		return redisTemplate.opsForHash().increment(key, item, -by);
@@ -316,7 +316,7 @@ public class RedisClient {
 	/**
 	 * 根据key获取Set中的所有值
 	 * @param key 键
-	 * @return
+	 * @return Set<Object>
 	 */
 	public Set<Object> sGet(Object key) {
 		try {
@@ -412,7 +412,7 @@ public class RedisClient {
 	 * @param key 键
 	 * @param start 开始
 	 * @param end 结束  0 到 -1代表所有值
-	 * @return {@link List<Object>}
+	 * @return {@link List}
 	 */
 	public List<Object> lGet(Object key, long start, long end) {
 		try {

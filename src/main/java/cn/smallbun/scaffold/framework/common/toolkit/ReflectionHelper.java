@@ -36,7 +36,7 @@ public class ReflectionHelper {
 	 * 获取指定类型内的所有方法
 	 *
 	 * @param clazz 类型
-	 * @return
+	 * @return Method[]
 	 */
 	public static Method[] getMethods(Class<?> clazz) {
 		return clazz.getDeclaredMethods();
@@ -46,7 +46,7 @@ public class ReflectionHelper {
 	 * 递归获取指定类型内以及类型的所有上级内定义的方法
 	 *
 	 * @param clazz 类型
-	 * @return
+	 * @return List<Method>
 	 */
 	public static List<Method> getAllMethods(Class<?> clazz) {
 		//自动注册继承的接口
@@ -62,8 +62,8 @@ public class ReflectionHelper {
 	/**
 	 * 获取实体类内 & 父类内的所有字段,如果父类存在和子类相同的属性，排除父类的，使用子类的
 	 *
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @return List
 	 */
 	public static List<Field> getAllFields(Class<?> clazz) {
 		Field[] fields = clazz.getDeclaredFields();
@@ -86,8 +86,8 @@ public class ReflectionHelper {
 	/**
 	 * 获取实体类内的所有字段并自动排除存在@Transient注解的字段
 	 *
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @return List
 	 */
 	public static List<Field> getAllFieldsExcludeTransient(Class<?> clazz) {
 		List<Field> result = new LinkedList<Field>();
@@ -105,8 +105,9 @@ public class ReflectionHelper {
 	 * 获取字段
 	 * 检索本类内是否存在，检索不到再去找父类内的字段
 	 *
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @param fieldName fieldName
+	 * @return Field
 	 */
 	public static Field getField(Class<?> clazz, String fieldName) throws Exception {
 		Field field = null;
@@ -118,7 +119,7 @@ public class ReflectionHelper {
 			} catch (NoSuchFieldException e1) {
 				try {
 					field = clazz.getSuperclass().getSuperclass().getDeclaredField(fieldName);
-				} catch (NoSuchFieldException e2) {
+				} catch (NoSuchFieldException ignored) {
 
 				}
 			}

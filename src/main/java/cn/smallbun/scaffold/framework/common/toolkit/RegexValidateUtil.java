@@ -33,8 +33,8 @@ public class RegexValidateUtil {
 	/**
 	 * 验证是否是邮箱
 	 *
-	 * @param email
-	 * @return
+	 * @param email email
+	 * @return boolean
 	 */
 	public static boolean checkEmail(String email) {
 		boolean flag = false;
@@ -48,8 +48,8 @@ public class RegexValidateUtil {
 	/**
 	 * 检测是否为手机
 	 *
-	 * @param mobile
-	 * @return
+	 * @param mobile mobile
+	 * @return boolean
 	 */
 	public static boolean checkMobile(String mobile) {
 		boolean flag = false;
@@ -63,8 +63,8 @@ public class RegexValidateUtil {
 	/**
 	 * 验证字符是否是数字
 	 *
-	 * @param str
-	 * @return
+	 * @param str str
+	 * @return boolean
 	 */
 	public static boolean isNumber(String str) {
 		boolean flag = false;

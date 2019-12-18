@@ -34,7 +34,7 @@ public class EncodeUtil {
 	 * HEX编码
 	 *
 	 * @param dataByteAry 待编码数据-byte数组
-	 * @return
+	 * @return char[]
 	 */
 	public static char[] enByHEX(byte[] dataByteAry) {
 		return Hex.encodeHex(dataByteAry, false);
@@ -44,7 +44,7 @@ public class EncodeUtil {
 	 * HEX解码
 	 *
 	 * @param dataCharAry 待解码数据-char数组
-	 * @return
+	 * @return byte[]
 	 */
 	public static byte[] deByHEX(char[] dataCharAry) {
 		try {
@@ -69,7 +69,7 @@ public class EncodeUtil {
 	 * BASE64解码（数组->数组）
 	 *
 	 * @param dataByteAry 待解码数据-byte数组
-	 * @return
+	 * @return byte[]
 	 */
 	public static byte[] deByBASE64(byte[] dataByteAry) {
 		return Base64.decodeBase64(dataByteAry);
@@ -78,12 +78,11 @@ public class EncodeUtil {
 	/**
 	 * byte字节数组 -> 二进制字符串 ,eg:([96, 0, 4, 0, 0] -> 000100011001...) 注：转换位图时使用
 	 *
-	 * @param byteAry
-	 * @return
-	 * @author jhjiang
+	 * @param byteAry byteAry
+	 * @return String
 	 */
 	public static String byteAryToBinary(byte[] byteAry) {
-		StringBuffer sbf = new StringBuffer(byteAry.length * Byte.SIZE);
+		StringBuilder sbf = new StringBuilder(byteAry.length * Byte.SIZE);
 		for (int i = 0; i < Byte.SIZE * byteAry.length; i++) {
 			sbf.append((byteAry[i / Byte.SIZE] << i % Byte.SIZE & 0x80) == 0 ? '0' : '1');
 		}
@@ -93,9 +92,8 @@ public class EncodeUtil {
 	/**
 	 * 二进制字符串 -> 字节数组
 	 *
-	 * @param binaryStr
-	 * @return
-	 * @author jhjiang
+	 * @param binaryStr binaryStr
+	 * @return byte[]
 	 */
 	public static byte[] binaryToByteAry(String binaryStr) {
 		int byteSize = (binaryStr.length() + Byte.SIZE - 1) / Byte.SIZE;
@@ -117,8 +115,8 @@ public class EncodeUtil {
 	/**
 	 * 字节数组转换为十六进制-（数组->字符串）
 	 *
-	 * @param byteAry
-	 * @return
+	 * @param byteAry binaryStr
+	 * @return String
 	 */
 	public static String byteAryToHex(byte[] byteAry) {
 		return new String(enByHEX(byteAry));
@@ -127,8 +125,8 @@ public class EncodeUtil {
 	/**
 	 * 十六进制转换为字节数组-（字符串->数组）
 	 *
-	 * @param hex
-	 * @return
+	 * @param hex hex
+	 * @return byte[]
 	 */
 	public static byte[] hexToByteAry(String hex) {
 		return deByHEX(hex.toCharArray());
@@ -139,7 +137,7 @@ public class EncodeUtil {
 	 *
 	 * @param hex         待转换数据
 	 * @param byteArySize 转换后的字节长度，前面补0
-	 * @return
+	 * @return byte[]
 	 */
 	public static byte[] hexToByteAry(String hex, int byteArySize) {
 		if (byteArySize <= 0) {

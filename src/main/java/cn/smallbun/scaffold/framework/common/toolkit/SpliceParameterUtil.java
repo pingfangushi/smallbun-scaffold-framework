@@ -33,9 +33,9 @@ import java.util.Map;
 public class SpliceParameterUtil {
 	/**
 	 * 拼接get 请求参数
-	 * @param url
-	 * @param params
-	 * @return
+	 * @param url url
+	 * @param params params
+	 * @return String
 	 */
 	public static String urlBuilder(String url, List<NameValuePair> params) {
 		return url + "?" + URLEncodedUtils.format(params, "UTF-8");
@@ -44,8 +44,8 @@ public class SpliceParameterUtil {
 
 	/**
 	 * 拼接Post请求参数
-	 * @param params
-	 * @return
+	 * @param params params
+	 * @return String
 	 */
 	public static String paramsToString(Map<String, String> params) {
 		if (params != null && params.size() > 0) {

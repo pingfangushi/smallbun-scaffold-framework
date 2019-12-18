@@ -39,9 +39,9 @@ public class ReflectionUtil {
 	 * 通过反射, 获得定义 Class 时声明的父类的泛型参数的类型 如: public EmployeeDao extends
 	 * BaseDao<Employee, String>
 	 *
-	 * @param clazz
-	 * @param index
-	 * @return
+	 * @param clazz clazz
+	 * @param index index
+	 * @return Class<?>
 	 */
 	public static Class<?> getSuperClassGenricType(Class<?> clazz, int index) {
 		Type genType = clazz.getGenericSuperclass();
@@ -70,9 +70,8 @@ public class ReflectionUtil {
 	/**
 	 * 通过反射, 获得 Class 定义中声明的父类的泛型参数类型 如:
 	 *
-	 * @param <T>
-	 * @param clazz
-	 * @return
+	 * @param clazz clazz
+	 * @return Object
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Class<T> getSuperGenericType(Class<?> clazz) {
@@ -81,8 +80,8 @@ public class ReflectionUtil {
 
 	/**
 	 * 获取所有字段
-	 * @param object
-	 * @return
+	 * @param object object
+	 * @return List
 	 */
 	public static List<Field> getFieldAll(Object object) {
 		List<Field> fieldList = Lists.newArrayList();
@@ -98,9 +97,9 @@ public class ReflectionUtil {
 
 	/**
 	 * 根据字段名称获取字段
-	 * @param object
-	 * @param field
-	 * @return
+	 * @param object object
+	 * @param field field
+	 * @return Field
 	 */
 	public static Field getFieldAll(Object object, String field) throws NoSuchFieldException {
 		for (Field field1 : getFieldAll(object)) {

@@ -70,25 +70,25 @@ public class ApiRestResult<T> implements Serializable {
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#result(Object)
+	 *
+	 * @param  result result
+	 * @return 结果
 	 */
 	public ApiRestResult<T> result(T result) {
 		this.result = result;
 		return this;
 	}
-
 	/**
-	 * (non-Javadoc)
-	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#getResult()
+	 * getResult
+	 * @return 结果
 	 */
 	public T getResult() {
 		return result;
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#getStatus()
+	 * getStatus
+	 * @return 状态
 	 */
 	public String getStatus() {
 		if (StringUtils.isBlank(status)) {
@@ -129,8 +129,9 @@ public class ApiRestResult<T> implements Serializable {
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see cn.smallbun.scaffold.framework.common.result.ApiRestResult#ok(Object)
+	 * message
+	 * @param data data
+	 * @return {@link ApiRestResult}
 	 */
 	public static <T> ApiRestResult<T> ok(T data) {
 		return new ApiRestResult<>(SUCCESS, "操作成功", data);
@@ -181,7 +182,8 @@ public class ApiRestResult<T> implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ApiRestResult{" + "result=" + result + ", status='" + status + '\'' + ", message='" + message + '\'' + "} " + super.toString();
+		return "ApiRestResult{" + "result=" + result + ", status='" + status + '\'' + ", message='" + message + '\''
+				+ "} " + super.toString();
 	}
 
 	/**

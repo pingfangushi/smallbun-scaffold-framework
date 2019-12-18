@@ -100,7 +100,7 @@ public class IpUtil {
 
 	/**
 	 *获取主机名
-	 * @return
+	 * @return String
 	 */
 	public static String getHostName() {
 		try {

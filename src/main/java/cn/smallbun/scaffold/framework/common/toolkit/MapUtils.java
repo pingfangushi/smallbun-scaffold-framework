@@ -62,8 +62,8 @@ public class MapUtils {
 
 	/**
 	 * Bean 转Map
-	 * @param o
-	 * @return
+	 * @param o o
+	 * @return {@link Map} result
 	 */
 	public static Map<String, String> beanToMap(Object o) {
 		return JSONObject.parseObject(JSON.toJSONString(o), new TypeReference<Map<String, String>>() {

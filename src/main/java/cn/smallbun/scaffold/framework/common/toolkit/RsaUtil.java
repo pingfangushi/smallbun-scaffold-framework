@@ -48,7 +48,7 @@ public class RsaUtil {
 	/**
 	 * 生成RAS公钥与私钥字符串，直接返回
 	 *
-	 * @return
+	 * @return HashMap
 	 */
 	public static HashMap<String, String> getKeys() {
 		HashMap<String, String> map = new HashMap<>(16);
@@ -76,8 +76,8 @@ public class RsaUtil {
 	 * 从字符串中加载公钥
 	 *
 	 * @param publicKeyStr 公钥字符串
-	 * @return
-	 * @throws Exception
+	 * @return RSAPublicKey
+	 * @throws Exception Exception
 	 */
 	public static RSAPublicKey loadPublicKey(String publicKeyStr) throws Exception {
 		try {
@@ -98,8 +98,8 @@ public class RsaUtil {
 	 * 从字符串中加载私钥
 	 *
 	 * @param privateKeyStr 私钥字符串
-	 * @return
-	 * @throws Exception
+	 * @return RSAPrivateKey
+	 * @throws Exception Exception
 	 */
 	public static RSAPrivateKey loadPrivateKey(String privateKeyStr) throws Exception {
 		try {
@@ -121,7 +121,7 @@ public class RsaUtil {
 	 *
 	 * @param publicKey     公钥
 	 * @param plainTextData 明文数据
-	 * @return
+	 * @return String
 	 * @throws Exception 加密过程中的异常信息
 	 */
 	public static String encrypt(RSAPublicKey publicKey, byte[] plainTextData) throws Exception {
@@ -154,7 +154,7 @@ public class RsaUtil {
 	 *
 	 * @param privateKey    私钥
 	 * @param plainTextData 明文数据
-	 * @return
+	 * @return String
 	 * @throws Exception 加密过程中的异常信息
 	 */
 	public static String encrypt(RSAPrivateKey privateKey, byte[] plainTextData) throws Exception {

@@ -31,7 +31,7 @@ public class UUIDUtil {
 	/**
 	 * 获取UUID
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String getUUID() {
 		UUID uuid = UUID.randomUUID();
@@ -41,7 +41,7 @@ public class UUIDUtil {
 	/**
 	 * 获取UUID
 	 *
-	 * @return
+	 * @return String[]
 	 */
 	public static String[] getUUID(int number) {
 		String[] result = null;

@@ -23,7 +23,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -67,9 +66,9 @@ public class HttpClientUtil {
 
 	/**
 	 * 请求
-	 * @param url
-	 * @param method
-	 * @param params
+	 * @param url url
+	 * @param method method
+	 * @param params params
 	 * @return String
 	 */
 	public static String client(String url, HttpMethod method, MultiValueMap<String, String> params) {
@@ -95,8 +94,8 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP POST方法
 	 *
-	 * @param
-	 * @param
+	 * @param url url
+	 * @param paramMap paramMap
 	 * @return String
 	 * @throws IOException IOException
 	 */
@@ -164,10 +163,10 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP POST方法
 	 *
-	 * @param
-	 * @param （如JSON串）
+	 * @param url url
+	 * @param data data（如JSON串）
 	 * @return String
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public static String post(String url, String data) throws IOException {
 		//获取DefaultHttpClient请求
@@ -184,10 +183,9 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP GET方法
 	 *
-	 * @param
+	 * @param url url
 	 * @return String
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public static String get(String url) throws IOException {
 		//获取DefaultHttpClient请求
@@ -203,11 +201,9 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP GET方法
 	 *
-	 * @param
-	 * @param
+	 * @param url url
+	 * @param paramMap paramMap
 	 * @return String
-	 * @throws ClientProtocolException
-	 * @throws IOException
 	 */
 	public static String get(String url, Map<String, String> paramMap) {
 		String httpEntityContent;
@@ -235,11 +231,10 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP PUT方法
 	 *
-	 * @param
-	 * @param
+	 * @param url url
+	 * @param paramMap paramMap
 	 * @return String
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public static String put(String url, Map<String, String> paramMap) throws IOException {
 		//获取DefaultHttpClient请求
@@ -257,10 +252,9 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP DELETE方法
 	 *
-	 * @param
+	 * @param url url
 	 * @return String
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public static String delete(String url) throws IOException {
 		//获取DefaultHttpClient请求
@@ -276,11 +270,10 @@ public class HttpClientUtil {
 	/**
 	 * 封装HTTP DELETE方法
 	 *
-	 * @param
-	 * @param
+	 * @param url url
+	 * @param paramMap paramMap
 	 * @return String
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public static String delete(String url, Map<String, String> paramMap) throws IOException {
 		//获取DefaultHttpClient请求
@@ -298,7 +291,7 @@ public class HttpClientUtil {
 	/**
 	 * 设置请求参数
 	 *
-	 * @param
+	 * @param paramMap paramMap
 	 * @return List
 	 */
 	private static List<NameValuePair> setHttpParams(Map<String, String> paramMap) {
@@ -313,10 +306,9 @@ public class HttpClientUtil {
 	/**
 	 * 获得响应HTTP实体内容
 	 *
-	 * @param response
+	 * @param response response
 	 * @return String
-	 * @throws IOException
-	 * @throws UnsupportedEncodingException
+	 * @throws IOException IOException
 	 */
 	private static String getHttpEntityContent(HttpResponse response) throws IOException {
 		HttpEntity entity = response.getEntity();
@@ -336,8 +328,8 @@ public class HttpClientUtil {
 
 	/**
 	 * doGet
-	 * @param url
-	 * @param param
+	 * @param url url
+	 * @param param param
 	 * @return String
 	 */
 	public static String doGet(String url, Map<String, String> param) {
@@ -386,8 +378,8 @@ public class HttpClientUtil {
 	/**
 	 * psot 请求
 	 *
-	 * @param url
-	 * @param param
+	 * @param url url
+	 * @param param param
 	 * @return String
 	 */
 	public static String doPost(String url, Map<String, String> param) {
@@ -466,8 +458,8 @@ public class HttpClientUtil {
 	/**
 	 * 封装发送数据
 	 *
-	 * @param url
-	 * @param param
+	 * @param url url
+	 * @param param param
 	 * @return String
 	 */
 	public static String postRequestByFormEntity(String url, UrlEncodedFormEntity param) {
@@ -493,7 +485,7 @@ public class HttpClientUtil {
 
 	/**
 	 * 返回发送的数据
-	 * @param param
+	 * @param param param
 	 * @return UrlEncodedFormEntity
 	 */
 	public static UrlEncodedFormEntity buildPairList(Map<String, String> param) {
@@ -512,8 +504,8 @@ public class HttpClientUtil {
 	/**
 	 * 向客户端返回数据
 	 *
-	 * @param response
-	 * @param obj
+	 * @param response response
+	 * @param obj obj
 	 */
 	public static void outPrint(HttpServletResponse response, Object obj) {
 		PrintWriter out = null;

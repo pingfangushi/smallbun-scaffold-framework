@@ -63,21 +63,21 @@ public class ParseUtil {
 	 * 将double类型格式化成0.000保留三位小数点
 	 *
 	 * @param val 未被格式化的值
-	 * @return
 	 * @return Double 格式化后的值
 	 */
 	public static Double toDouble(Double val) {
 		if (val != null) {
 			DecimalFormat format = new DecimalFormat("#0.000");
-			return Double.valueOf(Double.parseDouble(format.format(val)));
+			return Double.parseDouble(format.format(val));
 		}
-		return new Double(0.0D);
+		return 0.0D;
 	}
 
 	/**
 	 * 将double类型格式化，根据传入pattern进行格式化
-	 * @param val
-	 * @return
+	 * @param val val
+	 * @param pattern val
+	 * @return String
 	 */
 	public static String toDouble(Double val, String pattern) {
 		if (val != null) {
@@ -115,8 +115,7 @@ public class ParseUtil {
 	 * 将数组转换为字符串,格式化后字符串：str1,str2,str3<br>
 	 * 2016年12月23日 上午10:23:14 array2String
 	 *
-	 * @param objs
-	 * @return
+	 * @param objs objs
 	 * @return String
 	 */
 	public static String arrayToString(Object[] objs) {
@@ -135,7 +134,7 @@ public class ParseUtil {
 	 * @param pattern 分割的标识
 	 * @return String[] 格式化后的数组
 	 */
-	public static String[] stringtoArray(String obj, String pattern) {
+	public static String[] stringToArray(String obj, String pattern) {
 		return obj.toString().split(pattern);
 	}
 }

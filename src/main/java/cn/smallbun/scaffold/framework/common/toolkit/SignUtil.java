@@ -58,7 +58,7 @@ public class SignUtil {
 	 *
 	 * @param map    请求
 	 * @param md5Key 签名密钥
-	 * @return
+	 * @return String
 	 */
 	public static String getSignFromMap(Map<String, String> map, String md5Key) {
 		Map<String, String> sortMap = new TreeMap<>();
@@ -82,9 +82,9 @@ public class SignUtil {
 	 * ascii码升序,MD5消息摘要
 	 * json字符串转换为ascii码升序集合并拼接待签名数据  repository
 	 *
-	 * @param json
-	 * @param md5Key
-	 * @return
+	 * @param json json
+	 * @param md5Key md5Key
+	 * @return String
 	 */
 	public static String getSignFromJson(JSONObject json, String md5Key) {
 		//签名
@@ -105,7 +105,7 @@ public class SignUtil {
 				sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
 			}
 		}
-		sb.append("key=" + md5Key);
+		sb.append("key=").append(md5Key);
 		return DigestUtils.md5Hex(sb.toString()).toUpperCase();
 	}
 
@@ -146,10 +146,9 @@ public class SignUtil {
 	/**
 	 * 获取需要传递的URL,用户注册支付共用
 	 *
-	 * @param o
+	 * @param o o
 	 * @param signKey 加密串
 	 * @return 对象
-	 * @throws Exception
 	 */
 	public static String getEncryption(Object o, String signKey) {
 		getEncryptionPackage(o, signKey);
@@ -181,10 +180,9 @@ public class SignUtil {
 	/**
 	 * 对参数进行加密,并封装到对象中返回
 	 *
-	 * @param o
+	 * @param o o
+	 * @param signKey signKey
 	 * @return 加密封装后的对象
-	 * @throws Exception
-	 * @author SanLi
 	 */
 	public static Object getEncryptionPackage(Object o, String signKey) {
 		try {
@@ -216,8 +214,8 @@ public class SignUtil {
 	}
 
 	/**
-	 * @param object
-	 * @return
+	 * @param object object
+	 * @return Map
 	 */
 	public static Map<String, Object> objectMap(Object object) {
 		com.alibaba.fastjson.JSONObject jsonObject = (com.alibaba.fastjson.JSONObject) JSON.toJSON(object);
@@ -230,9 +228,9 @@ public class SignUtil {
 	}
 
 	/**
-	 * @param from
-	 * @param to
-	 * @return
+	 * @param from from
+	 * @param to to
+	 * @return Object
 	 */
 	public static Object convertBean2Bean(Object from, Object to) {
 		try {
@@ -262,7 +260,7 @@ public class SignUtil {
 	 *
 	 * @param o   验签的对象
 	 * @param key 加密串
-	 * @return
+	 * @return Boolean
 	 */
 	public static Boolean checkSignature(Object o, String key) {
 		try {

@@ -42,8 +42,8 @@ public class DesUtil {
 	 *
 	 * @param decrypt
 	 * @param upper   结果是否大写
-	 * @return
-	 * @throws DigestException
+	 * @return String
+	 * @throws DigestException DigestException
 	 */
 	public static String sha1(String decrypt, boolean upper) throws DigestException {
 		try {
@@ -55,8 +55,8 @@ public class DesUtil {
 			// Create Hex String
 			StringBuilder hexString = new StringBuilder();
 			// 字节数组转换为 十六进制 数
-			for (int i = 0; i < bytes.length; i++) {
-				String shaHex = Integer.toHexString(bytes[i] & 0xFF);
+			for (byte aByte : bytes) {
+				String shaHex = Integer.toHexString(aByte & 0xFF);
 				if (shaHex.length() < 2) {
 					hexString.append(0);
 				}
