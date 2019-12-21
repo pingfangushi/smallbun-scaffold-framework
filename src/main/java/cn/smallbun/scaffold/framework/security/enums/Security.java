@@ -1,19 +1,20 @@
 /*
- * Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+ * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
+ * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package cn.smallbun.scaffold.framework.security.enums;
 
 /**
@@ -22,45 +23,44 @@ package cn.smallbun.scaffold.framework.security.enums;
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/9 20:32
  */
 public enum Security {
-	/**
-	 * 用户不存在
-	 */
-	USER_DOES_NOT_EXIST("0", "用户不存在!"),
-	/**
-	 * 用户正常
-	 */
-	USER_IS_NORMAL("0", "用户不存在!"),
-	/**
-	 * 用户被禁用
-	 */
-	USER_IS_DISABLED("1", "用户被禁用,请联系管理员!"),
-	/**
-	 * 用户被锁定
-	 */
-	USER_IS_LOCKED("2", "用户被锁定,请联系管理员!");
+                      /**
+                       * 用户不存在
+                       */
+                      USER_DOES_NOT_EXIST("0", "用户不存在!"),
+                      /**
+                       * 用户正常
+                       */
+                      USER_IS_NORMAL("0", "用户不存在!"),
+                      /**
+                       * 用户被禁用
+                       */
+                      USER_IS_DISABLED("1", "用户被禁用,请联系管理员!"),
+                      /**
+                       * 用户被锁定
+                       */
+                      USER_IS_LOCKED("2", "用户被锁定,请联系管理员!");
 
+    private String code;
+    private String desc;
 
-	private String code;
-	private String desc;
+    Security(String code, String desc) {
+        this.code = code;
+        this.desc = desc;
+    }
 
-	Security(String code, String desc) {
-		this.code = code;
-		this.desc = desc;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public void setDesc(String message) {
-		this.desc = message;
-	}
+    public void setDesc(String message) {
+        this.desc = message;
+    }
 }

@@ -1,20 +1,20 @@
 /*
- * Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+ * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
+ * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
 package cn.smallbun.scaffold.framework.initialize;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,26 +37,25 @@ import javax.annotation.Nullable;
 @Slf4j
 @Component
 public class InitSystemConfig implements CommandLineRunner, EnvironmentAware {
-	/**
-	 * 在服务启动后执行，会在@Bean实例化之后执行，故如果@Bean需要依赖这里的话会出问题
-	 *
-	 * @param args ${@link String}
-	 */
-	@Override
-	public void run(String... args) {
-		//这里可以根据数据库返回结果创建一些对象、启动一些线程等
+    /**
+     * 在服务启动后执行，会在@Bean实例化之后执行，故如果@Bean需要依赖这里的话会出问题
+     *
+     * @param args ${@link String}
+     */
+    @Override
+    public void run(String... args) {
+        //这里可以根据数据库返回结果创建一些对象、启动一些线程等
 
-	}
+    }
 
-	/**
-	 * 在@Bean实例化之前执行常用于读取数据库配置以供其它bean使用
-	 * environment对象可以获取配置文件的配置，也可以把配置设置到该对象中
-	 *
-	 * @param environment ${@link Environment }
-	 */
-	@Override
-	public void setEnvironment(@Nullable Environment environment) {
+    /**
+     * 在@Bean实例化之前执行常用于读取数据库配置以供其它bean使用
+     * environment对象可以获取配置文件的配置，也可以把配置设置到该对象中
+     *
+     * @param environment ${@link Environment }
+     */
+    @Override
+    public void setEnvironment(@Nullable Environment environment) {
 
-	}
+    }
 }
-

@@ -1,20 +1,20 @@
 /*
- * Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+ * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
+ * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
 package cn.smallbun.scaffold.framework.mybatis.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -38,37 +38,37 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class BaseAuditEntity<PK> extends BaseEntity<PK> {
 
-	/**
-	 * 创建者
-	 */
-	@JsonIgnore
-	@JSONField(serialize = false)
-	@TableField(value = "create_by", fill = FieldFill.INSERT)
-	@ApiModelProperty(hidden = true)
-	private String createBy;
-	/**
-	 * 创建日期
-	 */
-	@JsonIgnore
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	@TableField(value = "create_time", fill = FieldFill.INSERT)
-	@ApiModelProperty(hidden = true)
-	private LocalDateTime createTime;
-	/**
-	 * 最后修改者
-	 */
-	@JsonIgnore
-	@JSONField(serialize = false)
-	@TableField(value = "last_modified_by", fill = FieldFill.INSERT_UPDATE)
-	@ApiModelProperty(hidden = true)
-	private String lastModifiedBy;
-	/**
-	 * 最后修改时间
-	 */
-	@JsonIgnore
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	@TableField(value = "last_modified_time", fill = FieldFill.INSERT_UPDATE)
-	@ApiModelProperty(hidden = true)
-	private LocalDateTime lastModifiedTime;
+    /**
+     * 创建者
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
+    @ApiModelProperty(hidden = true)
+    private String        createBy;
+    /**
+     * 创建日期
+     */
+    @JsonIgnore
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @ApiModelProperty(hidden = true)
+    private LocalDateTime createTime;
+    /**
+     * 最后修改者
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(value = "last_modified_by", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(hidden = true)
+    private String        lastModifiedBy;
+    /**
+     * 最后修改时间
+     */
+    @JsonIgnore
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "last_modified_time", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(hidden = true)
+    private LocalDateTime lastModifiedTime;
 
 }

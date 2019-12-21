@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+ * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
+ * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package cn.smallbun.scaffold.framework.security.method.prepost;
 
@@ -33,39 +35,41 @@ import org.springframework.util.Assert;
  * @since 3.0
  */
 abstract class AbstractExpressionBasedMethodConfigAttribute implements ConfigAttribute {
-	private final Expression filterExpression;
-	private final Expression authorizeExpression;
+    private final Expression filterExpression;
+    private final Expression authorizeExpression;
 
-	/**
-	 * Parses the supplied expressions as Spring-EL.
-	 */
-	AbstractExpressionBasedMethodConfigAttribute(String filterExpression, String authorizeExpression)
-			throws ParseException {
-		Assert.isTrue(filterExpression != null || authorizeExpression != null,
-				"Filter and authorization Expressions cannot both be null");
-		SpelExpressionParser parser = new SpelExpressionParser();
-		this.filterExpression = filterExpression == null ? null : parser.parseExpression(filterExpression);
-		this.authorizeExpression = authorizeExpression == null ? null : parser.parseExpression(authorizeExpression);
-	}
+    /**
+     * Parses the supplied expressions as Spring-EL.
+     */
+    AbstractExpressionBasedMethodConfigAttribute(String filterExpression,
+                                                 String authorizeExpression) throws ParseException {
+        Assert.isTrue(filterExpression != null || authorizeExpression != null,
+            "Filter and authorization Expressions cannot both be null");
+        SpelExpressionParser parser = new SpelExpressionParser();
+        this.filterExpression = filterExpression == null ? null
+            : parser.parseExpression(filterExpression);
+        this.authorizeExpression = authorizeExpression == null ? null
+            : parser.parseExpression(authorizeExpression);
+    }
 
-	AbstractExpressionBasedMethodConfigAttribute(Expression filterExpression, Expression authorizeExpression)
-			throws ParseException {
-		Assert.isTrue(filterExpression != null || authorizeExpression != null,
-				"Filter and authorization Expressions cannot both be null");
-		this.filterExpression = filterExpression;
-		this.authorizeExpression = authorizeExpression;
-	}
+    AbstractExpressionBasedMethodConfigAttribute(Expression filterExpression,
+                                                 Expression authorizeExpression) throws ParseException {
+        Assert.isTrue(filterExpression != null || authorizeExpression != null,
+            "Filter and authorization Expressions cannot both be null");
+        this.filterExpression = filterExpression;
+        this.authorizeExpression = authorizeExpression;
+    }
 
-	Expression getFilterExpression() {
-		return filterExpression;
-	}
+    Expression getFilterExpression() {
+        return filterExpression;
+    }
 
-	Expression getAuthorizeExpression() {
-		return authorizeExpression;
-	}
+    Expression getAuthorizeExpression() {
+        return authorizeExpression;
+    }
 
-	@Override
-	public String getAttribute() {
-		return null;
-	}
+    @Override
+    public String getAttribute() {
+        return null;
+    }
 }

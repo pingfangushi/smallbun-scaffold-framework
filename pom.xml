@@ -26,10 +26,12 @@
     <name>smallbun-scaffold-framework</name>
     <description>smallbun企业级开发脚手架-核心框架</description>
     <url>http://www.smallbun.cn</url>
+    <inceptionYear>2019</inceptionYear>
     <!--scm-->
     <scm>
         <connection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</connection>
-        <developerConnection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git
+        </developerConnection>
         <url>http://github.com/pingfangushi/smallbun-scaffold-framework/tree/master</url>
     </scm>
     <!--开发人员信息-->
@@ -52,12 +54,15 @@
         <!--编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.encoding>UTF-8</project.encoding>
+        <main.user.dir>${user.dir}</main.user.dir>
         <!--java 版本-->
         <java.version>1.8</java.version>
         <java.source.version>1.8</java.source.version>
         <java.target.version>1.8</java.target.version>
         <!-- Build args -->
-        <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m -Dfile.encoding=UTF-8
+        <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m
+            -Dfile.encoding=UTF-8
             -Djava.net.preferIPv4Stack=true
         </argline>
         <arguments/>
@@ -307,11 +312,52 @@
     </distributionManagement>
     <build>
         <plugins>
-            <!--deploy-->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>remove</goal>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <quiet>true</quiet>
+                    <header>${main.user.dir}/codestyle/HEADER</header>
+                    <excludes>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>*.sh</exclude>
+                        <exclude>*.yml</exclude>
+                        <exclude>.editorconfig</exclude>
+                        <exclude>.gitignore</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.xml</exclude>
+                    </excludes>
+                    <strictCheck>true</strictCheck>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>2.11.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configFile>${main.user.dir}/codestyle/Formatter.xml</configFile>
+                    <encoding>${project.encoding}</encoding>
+                </configuration>
             </plugin>
             <!--编译-->
             <plugin>
@@ -351,7 +397,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <doctitle>smallbun 企业级开发脚手架核心框架 ${project.version}</doctitle>
+                    <doctitle>${project.description} ${project.version}</doctitle>
                     <encoding>UTF-8</encoding>
                     <charset>UTF-8</charset>
                     <additionalOptions>

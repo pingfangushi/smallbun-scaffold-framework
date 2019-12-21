@@ -1,19 +1,20 @@
 /*
- * Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+ * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
+ * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package cn.smallbun.scaffold.framework.security.method.configuration;
 
 import cn.smallbun.scaffold.framework.security.method.prepost.ExpressionBasedPostInvocationAdvice;
@@ -50,70 +51,72 @@ import java.util.List;
 @Configuration(proxyBeanMethods = false)
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SmallBunGlobalMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration
-		implements BeanFactoryAware {
-	private BeanFactory context;
+                                                       implements BeanFactoryAware {
+    private BeanFactory context;
 
-	@Override
-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		this.context = beanFactory;
-		super.setBeanFactory(beanFactory);
-	}
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.context = beanFactory;
+        super.setBeanFactory(beanFactory);
+    }
 
-	/**
-	 * AccessDecisionManager
-	 * 访问决策管理器，主要为处理全局用户
-	 * @return {@link AccessDecisionManager} AccessDecisionManager
-	 */
-	@Override
-	protected AccessDecisionManager accessDecisionManager() {
-		List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
-		//SmallBunPreInvocationAuthorizationAdviceVoter
-		ExpressionBasedPreInvocationAdvice expressionAdvice = new ExpressionBasedPreInvocationAdvice();
-		expressionAdvice.setExpressionHandler(getExpressionHandler());
-		decisionVoters.add(new SmallBunPreInvocationAuthorizationAdviceVoter(expressionAdvice));
-		//jsr250
-		decisionVoters.add(new SmallBunJsr250Voter());
-		//role
-		SmallBunRoleVoter roleVoter = new SmallBunRoleVoter();
-		GrantedAuthorityDefaults grantedAuthorityDefaults = getSingleBeanOrNull(GrantedAuthorityDefaults.class);
-		if (grantedAuthorityDefaults != null) {
-			roleVoter.setRolePrefix(grantedAuthorityDefaults.getRolePrefix());
-		}
-		decisionVoters.add(roleVoter);
-		decisionVoters.add(new AuthenticatedVoter());
-		return new AffirmativeBased(decisionVoters);
-	}
+    /**
+     * AccessDecisionManager
+     * 访问决策管理器，主要为处理全局用户
+     * @return {@link AccessDecisionManager} AccessDecisionManager
+     */
+    @Override
+    protected AccessDecisionManager accessDecisionManager() {
+        List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
+        //SmallBunPreInvocationAuthorizationAdviceVoter
+        ExpressionBasedPreInvocationAdvice expressionAdvice = new ExpressionBasedPreInvocationAdvice();
+        expressionAdvice.setExpressionHandler(getExpressionHandler());
+        decisionVoters.add(new SmallBunPreInvocationAuthorizationAdviceVoter(expressionAdvice));
+        //jsr250
+        decisionVoters.add(new SmallBunJsr250Voter());
+        //role
+        SmallBunRoleVoter roleVoter = new SmallBunRoleVoter();
+        GrantedAuthorityDefaults grantedAuthorityDefaults = getSingleBeanOrNull(
+            GrantedAuthorityDefaults.class);
+        if (grantedAuthorityDefaults != null) {
+            roleVoter.setRolePrefix(grantedAuthorityDefaults.getRolePrefix());
+        }
+        decisionVoters.add(roleVoter);
+        decisionVoters.add(new AuthenticatedVoter());
+        return new AffirmativeBased(decisionVoters);
+    }
 
-	/**
-	 * Provide a custom {@link AfterInvocationManager} for the default implementation of
-	 * {@link #methodSecurityInterceptor(MethodSecurityMetadataSource)}. The default is null
-	 * if pre post is not enabled. Otherwise, it returns a {@link AfterInvocationProviderManager}.
-	 *
-	 * <p>
-	 * Subclasses should override this method to provide a custom
-	 * {@link AfterInvocationManager}
-	 * </p>
-	 *
-	 * @return the {@link AfterInvocationManager} to use
-	 */
-	@Override
-	protected AfterInvocationManager afterInvocationManager() {
-		AfterInvocationProviderManager invocationProviderManager = new AfterInvocationProviderManager();
-		// SmallBunExpressionBasedPostInvocationAdvice
-		ExpressionBasedPostInvocationAdvice postAdvice = new ExpressionBasedPostInvocationAdvice(
-				getExpressionHandler());
-		PostInvocationAdviceProvider postInvocationAdviceProvider = new PostInvocationAdviceProvider(postAdvice);
-		List<AfterInvocationProvider> afterInvocationProviders = new ArrayList<>();
-		afterInvocationProviders.add(postInvocationAdviceProvider);
-		invocationProviderManager.setProviders(afterInvocationProviders);
-		return invocationProviderManager;
-	}
+    /**
+     * Provide a custom {@link AfterInvocationManager} for the default implementation of
+     * {@link #methodSecurityInterceptor(MethodSecurityMetadataSource)}. The default is null
+     * if pre post is not enabled. Otherwise, it returns a {@link AfterInvocationProviderManager}.
+     *
+     * <p>
+     * Subclasses should override this method to provide a custom
+     * {@link AfterInvocationManager}
+     * </p>
+     *
+     * @return the {@link AfterInvocationManager} to use
+     */
+    @Override
+    protected AfterInvocationManager afterInvocationManager() {
+        AfterInvocationProviderManager invocationProviderManager = new AfterInvocationProviderManager();
+        // SmallBunExpressionBasedPostInvocationAdvice
+        ExpressionBasedPostInvocationAdvice postAdvice = new ExpressionBasedPostInvocationAdvice(
+            getExpressionHandler());
+        PostInvocationAdviceProvider postInvocationAdviceProvider = new PostInvocationAdviceProvider(
+            postAdvice);
+        List<AfterInvocationProvider> afterInvocationProviders = new ArrayList<>();
+        afterInvocationProviders.add(postInvocationAdviceProvider);
+        invocationProviderManager.setProviders(afterInvocationProviders);
+        return invocationProviderManager;
+    }
 
-
-	private <T> T getSingleBeanOrNull(Class<T> type) {
-		try {
-			return context.getBean(type);
-		} catch (NoSuchBeanDefinitionException ignored) {}
-		return null;
-	}
+    private <T> T getSingleBeanOrNull(Class<T> type) {
+        try {
+            return context.getBean(type);
+        } catch (NoSuchBeanDefinitionException ignored) {
+        }
+        return null;
+    }
 }
