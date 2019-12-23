@@ -254,6 +254,12 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <version>3.0</version>
+            <scope>provided</scope>
+        </dependency>
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -328,6 +334,10 @@
                 <configuration>
                     <quiet>true</quiet>
                     <header>${main.user.dir}/codestyle/HEADER</header>
+                    <properties>
+                        <owner>SanLi</owner>
+                        <email>qinggang.zuo@gmail.com</email>
+                    </properties>
                     <excludes>
                         <exclude>**/*.properties</exclude>
                         <exclude>*.sh</exclude>

@@ -1,6 +1,6 @@
 /*
  * smallbun-scaffold-framework - smallbun企业级开发脚手架-核心框架
- * Copyright © 2019 zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+ * Copyright © 2019 SanLi (qinggang.zuo@gmail.com) ${company}
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by

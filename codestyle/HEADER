@@ -1,5 +1,5 @@
 ${project.name} - ${project.description}
-Copyright © ${project.inceptionYear} zuoqinggang (qinggang.zuo@gmail.com / 2689170096@qq.com)
+Copyright © ${project.inceptionYear} ${owner} (${email}) ${company}
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
