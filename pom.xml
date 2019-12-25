@@ -361,6 +361,7 @@
                     <execution>
                         <goals>
                             <goal>format</goal>
+                            <goal>validate</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -439,7 +440,7 @@
                 <configuration>
                     <serverId>deploymentRepo</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
                 </configuration>
             </plugin>
             <plugin>
