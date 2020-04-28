@@ -1,0 +1,184 @@
+<!--
+  ~ Copyright (c) 2018-2019.‭‭‭‭‭‭‭‭‭‭‭‭[zuoqinggang] www.pingfangushi.com
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>cn.smallbun.scaffold</groupId>
+    <artifactId>scaffold-framework</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.1</version>
+    <modules>
+        <module>scaffold-framework-parent</module>
+        <module>scaffold-framework-bom</module>
+        <module>scaffold-framework-core</module>
+    </modules>
+    <name>smallbun-scaffold-framework</name>
+    <description>smallbun企业级开发脚手架-核心框架</description>
+    <url>http://www.smallbun.cn</url>
+    <inceptionYear>2020</inceptionYear>
+    <!--scm-->
+    <scm>
+        <connection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git</connection>
+        <developerConnection>scm:git:git@github.com:pingfangushi/smallbun-scaffold-framework.git
+        </developerConnection>
+        <url>http://github.com/pingfangushi/smallbun-scaffold-framework/tree/master</url>
+    </scm>
+    <!--开发人员信息-->
+    <developers>
+        <developer>
+            <name>zuoqinggang</name>
+            <email>qinggang.zuo@gmail.com</email>
+            <url>https://www.pingfangushi.com</url>
+        </developer>
+    </developers>
+    <!--licenses-->
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/lgpl-3.0.html</url>
+            <distribution>repo,manual</distribution>
+        </license>
+    </licenses>
+    <properties>
+        <!--编码-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.encoding>UTF-8</project.encoding>
+        <main.user.dir>${user.dir}</main.user.dir>
+        <!--java 版本-->
+        <java.version>1.8</java.version>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+        <!-- Build args -->
+        <argline>-server -Xms256m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=128m
+            -Dfile.encoding=UTF-8
+            -Djava.net.preferIPv4Stack=true
+        </argline>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <skipTests>false</skipTests>
+    </properties>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>deploymentRepo</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <!--license-->
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>remove</goal>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <quiet>true</quiet>
+                    <header>${main.user.dir}/codestyle/HEADER</header>
+                    <properties>
+                        <owner>SanLi</owner>
+                        <email>qinggang.zuo@gmail.com</email>
+                    </properties>
+                    <excludes>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>*.sh</exclude>
+                        <exclude>*.yml</exclude>
+                        <exclude>.editorconfig</exclude>
+                        <exclude>.gitignore</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>/codestyle/HEADER</exclude>
+                    </excludes>
+                    <strictCheck>true</strictCheck>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                </configuration>
+            </plugin>
+            <!--formatter-->
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>2.11.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configFile>${main.user.dir}/codestyle/Formatter.xml</configFile>
+                    <encoding>${project.encoding}</encoding>
+                </configuration>
+            </plugin>
+            <!--gpg签名组件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--nexus-staging-maven-plugin-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>deploymentRepo</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <!--versions-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
