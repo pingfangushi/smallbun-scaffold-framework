@@ -17,8 +17,8 @@
  */
 package cn.smallbun.scaffold.framework.mybatis.utils;
 
-import com.google.common.collect.Lists;
 import cn.smallbun.scaffold.framework.mybatis.domain.BaseNodeEntity;
+import com.google.common.collect.Lists;
 
 import java.io.Serializable;
 import java.util.List;

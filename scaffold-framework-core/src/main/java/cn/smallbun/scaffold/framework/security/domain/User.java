@@ -71,8 +71,8 @@ public class User extends org.springframework.security.core.userdetails.User {
      * @throws IllegalArgumentException if a <code>null</code> value was passed either as
      *                                  a parameter or as an element in the <code>GrantedAuthority</code> collection
      */
-    public User(String username, String password, String id, String microServiceEnv,
-                boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
+    public User(String username, String password, String id, boolean enabled,
+                boolean accountNonExpired, boolean credentialsNonExpired,
                 boolean accountNonLocked) {
 
         super(username, password, enabled, accountNonExpired, credentialsNonExpired,

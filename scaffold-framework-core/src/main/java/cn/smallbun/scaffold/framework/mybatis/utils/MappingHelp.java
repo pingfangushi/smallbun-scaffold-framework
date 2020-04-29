@@ -17,9 +17,9 @@
  */
 package cn.smallbun.scaffold.framework.mybatis.utils;
 
+import cn.smallbun.scaffold.framework.mybatis.page.Page;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
-import cn.smallbun.scaffold.framework.mybatis.page.Page;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;

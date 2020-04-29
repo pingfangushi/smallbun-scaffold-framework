@@ -17,6 +17,7 @@
  */
 package cn.smallbun.scaffold.framework.mybatis.interceptor;
 
+import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.MybatisDefaultParameterHandler;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -35,7 +36,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.dialects.IDialect;
 import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
 import com.baomidou.mybatisplus.extension.toolkit.SqlParserUtils;
 import com.google.common.collect.Lists;
-import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.sf.jsqlparser.JSQLParserException;

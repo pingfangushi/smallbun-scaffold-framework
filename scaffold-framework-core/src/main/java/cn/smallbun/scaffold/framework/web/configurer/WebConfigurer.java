@@ -17,13 +17,13 @@
  */
 package cn.smallbun.scaffold.framework.web.configurer;
 
+import cn.smallbun.scaffold.framework.configurer.SmallBunProperties;
+import cn.smallbun.scaffold.framework.web.interceptor.UserAgentInterceptor;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import cn.smallbun.scaffold.framework.configurer.SmallBunProperties;
-import cn.smallbun.scaffold.framework.web.interceptor.UserAgentInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;

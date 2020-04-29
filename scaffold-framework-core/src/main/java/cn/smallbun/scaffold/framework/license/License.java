@@ -24,7 +24,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.NotBlank;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -35,7 +34,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @Order(Ordered.HIGHEST_PRECEDENCE + 20 + 1)
 public class License implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
-
 
     private static final AtomicBoolean PROCESSED = new AtomicBoolean(false);
 
@@ -52,7 +50,7 @@ public class License implements ApplicationListener<ApplicationEnvironmentPrepar
         System.err.println(chineseText);
         System.err.println(englishText);
         System.err.println(
-                "smallbun-scaffold-framework Version: " + AppVersionUtil.getVersion(this.getClass()));
+            "smallbun-scaffold-framework Version: " + AppVersionUtil.getVersion(this.getClass()));
 
         // mark processed to be true
         PROCESSED.compareAndSet(false, true);

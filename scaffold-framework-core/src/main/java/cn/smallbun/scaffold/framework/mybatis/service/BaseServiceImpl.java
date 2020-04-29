@@ -17,6 +17,11 @@
  */
 package cn.smallbun.scaffold.framework.mybatis.service;
 
+import cn.smallbun.scaffold.framework.common.toolkit.ReflectionHelper;
+import cn.smallbun.scaffold.framework.common.toolkit.ReflectionUtil;
+import cn.smallbun.scaffold.framework.mybatis.domain.BaseEntity;
+import cn.smallbun.scaffold.framework.mybatis.mapper.BaseMapper;
+import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -26,11 +31,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import cn.smallbun.scaffold.framework.common.toolkit.ReflectionHelper;
-import cn.smallbun.scaffold.framework.common.toolkit.ReflectionUtil;
-import cn.smallbun.scaffold.framework.mybatis.domain.BaseEntity;
-import cn.smallbun.scaffold.framework.mybatis.mapper.BaseMapper;
-import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +42,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.baomidou.mybatisplus.core.metadata.TableInfoHelper.getTableInfo;
-import static cn.smallbun.scaffold.framework.common.toolkit.ReflectionUtil.getFieldAll;
 
 /**
  *

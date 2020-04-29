@@ -17,14 +17,14 @@
  */
 package cn.smallbun.scaffold.framework.configurer;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.google.code.kaptcha.util.Config;
 import cn.smallbun.scaffold.framework.context.ApplicationContextHelp;
 import cn.smallbun.scaffold.framework.initialize.ContextInitListener;
 import cn.smallbun.scaffold.framework.security.jwt.JwtConfigurer;
 import cn.smallbun.scaffold.framework.security.jwt.JwtFilter;
 import cn.smallbun.scaffold.framework.security.jwt.TokenProvider;
 import cn.smallbun.scaffold.framework.security.listener.SecurityListener;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.google.code.kaptcha.util.Config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

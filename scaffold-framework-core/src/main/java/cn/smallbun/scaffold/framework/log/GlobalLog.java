@@ -17,9 +17,9 @@
  */
 package cn.smallbun.scaffold.framework.log;
 
-import com.alibaba.fastjson.JSONObject;
-import cn.smallbun.scaffold.framework.json.JSON;
 import cn.smallbun.scaffold.framework.log.domain.LogModel;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.MDC;
 
 import java.util.Objects;

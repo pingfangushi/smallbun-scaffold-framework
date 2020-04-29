@@ -17,10 +17,10 @@
  */
 package cn.smallbun.scaffold.framework.common.address;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import cn.smallbun.scaffold.framework.common.toolkit.HttpClientUtil;
 import cn.smallbun.scaffold.framework.common.toolkit.IpUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;

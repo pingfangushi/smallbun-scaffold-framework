@@ -17,11 +17,11 @@
  */
 package cn.smallbun.scaffold.framework.mybatis.service;
 
+import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.smallbun.scaffold.framework.mybatis.page.PageModel;
 
 /**
  * @author SanLi
