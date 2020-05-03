@@ -31,6 +31,7 @@ import java.io.IOException;
 
 /**
  * 如果找到与有效用户对应的标头，则过滤传入的请求并安装Spring Security主体。
+ *
  * @author SanLi
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on  2019/5/7
  */
@@ -38,15 +39,15 @@ public class JwtFilter extends GenericFilterBean {
     /**
      * AUTHORIZATION_HEADER
      */
-    public static final String AUTHORIZATION_HEADER = "Authorization";
+    public static final String  AUTHORIZATION_HEADER = "Authorization";
     /**
      * BEARER
      */
-    public static final String BEARER               = "Bearer ";
+    public static final String  BEARER               = "Bearer ";
     /**
      * token 提供者
      */
-    private TokenProvider      tokenProvider;
+    private final TokenProvider tokenProvider;
 
     public JwtFilter(TokenProvider tokenProvider) {
         this.tokenProvider = tokenProvider;
@@ -54,10 +55,11 @@ public class JwtFilter extends GenericFilterBean {
 
     /**
      * doFilter
-     * @param servletRequest {@link ServletRequest}
+     *
+     * @param servletRequest  {@link ServletRequest}
      * @param servletResponse {@link ServletResponse}
-     * @param filterChain {@link FilterChain}
-     * @throws IOException IOException
+     * @param filterChain     {@link FilterChain}
+     * @throws IOException      IOException
      * @throws ServletException ServletException
      */
     @Override
@@ -67,7 +69,9 @@ public class JwtFilter extends GenericFilterBean {
         String jwt = resolveToken(httpServletRequest);
         //验证token
         if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) {
+            // 获取认证
             Authentication authentication = this.tokenProvider.getAuthentication(jwt);
+            // 上下文放入权限
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(servletRequest, servletResponse);
@@ -75,13 +79,14 @@ public class JwtFilter extends GenericFilterBean {
 
     /**
      * 解析令牌
+     *
      * @param request {@link HttpServletRequest}
      * @return String
      */
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER)) {
-            return bearerToken.substring(7);
+            return bearerToken.substring(BEARER.length());
         }
         return null;
     }

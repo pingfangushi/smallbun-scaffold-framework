@@ -41,8 +41,8 @@ import static cn.smallbun.scaffold.framework.common.toolkit.CreateFileUtil.creat
 @Slf4j
 public class SecurityListener implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final Logger        logger    = LoggerFactory.getLogger(SecurityListener.class);
-    private static final String DIR_NAME  = ".smallbun";
+    private final Logger logger = LoggerFactory.getLogger(SecurityListener.class);
+    private static final String DIR_NAME = ".smallbun";
     private static final String USER_HOME = "user.home";
 
     public SecurityListener(SmallBunProperties properties) {
@@ -53,18 +53,18 @@ public class SecurityListener implements ApplicationListener<ContextRefreshedEve
     public void onApplicationEvent(@Nullable ContextRefreshedEvent contextRefreshedEvent) {
         if (properties.getSecurity().isPasswordGenerated()) {
             String path = addSeparator(System.getProperty(USER_HOME)) + DIR_NAME + File.separator
-                          + "secrets" + File.separator;
+                    + "secrets" + File.separator;
             createFile(path + "password");
             try {
                 BufferedWriter stream = new BufferedWriter(
-                    new FileWriter(new File(path + "password")));
+                        new FileWriter(new File(path + "password")));
                 //清空
                 stream.write(properties.getSecurity().getNativePassword());
                 stream.flush();
                 stream.close();
                 // log
                 logger.info(String.format("%n%nUsing generated security password: %s%n",
-                    properties.getSecurity().getNativePassword()));
+                        properties.getSecurity().getNativePassword()));
             } catch (IOException e) {
                 System.exit(5907);
             }

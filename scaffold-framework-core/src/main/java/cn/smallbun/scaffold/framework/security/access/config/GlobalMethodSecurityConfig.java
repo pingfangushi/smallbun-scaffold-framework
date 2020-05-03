@@ -15,27 +15,28 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cn.smallbun.scaffold.framework.security.method.configuration;
+package cn.smallbun.scaffold.framework.security.access.config;
 
-import cn.smallbun.scaffold.framework.security.method.prepost.ExpressionBasedPostInvocationAdvice;
-import cn.smallbun.scaffold.framework.security.method.voter.SmallBunJsr250Voter;
-import cn.smallbun.scaffold.framework.security.method.voter.SmallBunPreInvocationAuthorizationAdviceVoter;
-import cn.smallbun.scaffold.framework.security.method.voter.SmallBunRoleVoter;
+import cn.smallbun.scaffold.framework.security.access.vote.AffirmativeBased;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.AfterInvocationProvider;
+import org.springframework.security.access.annotation.Jsr250Voter;
+import org.springframework.security.access.expression.method.ExpressionBasedPostInvocationAdvice;
 import org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice;
 import org.springframework.security.access.intercept.AfterInvocationManager;
 import org.springframework.security.access.intercept.AfterInvocationProviderManager;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.access.prepost.PostInvocationAdviceProvider;
-import org.springframework.security.access.vote.AffirmativeBased;
+import org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter;
 import org.springframework.security.access.vote.AuthenticatedVoter;
+import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
@@ -45,17 +46,18 @@ import java.util.List;
 
 /**
  * GlobalMethodSecurityConfig 主要为了封装全局用户
+ *
  * @author SanLi
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/1 12:37
  */
-@Configuration(proxyBeanMethods = false)
+@Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-public class SmallBunGlobalMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration
-                                                       implements BeanFactoryAware {
+public class GlobalMethodSecurityConfig extends GlobalMethodSecurityConfiguration
+                                        implements BeanFactoryAware {
     private BeanFactory context;
 
     @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+    public void setBeanFactory(@NonNull BeanFactory beanFactory) throws BeansException {
         this.context = beanFactory;
         super.setBeanFactory(beanFactory);
     }
@@ -63,19 +65,19 @@ public class SmallBunGlobalMethodSecurityConfiguration extends GlobalMethodSecur
     /**
      * AccessDecisionManager
      * 访问决策管理器，主要为处理全局用户
+     *
      * @return {@link AccessDecisionManager} AccessDecisionManager
      */
     @Override
     protected AccessDecisionManager accessDecisionManager() {
         List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
-        //SmallBunPreInvocationAuthorizationAdviceVoter
         ExpressionBasedPreInvocationAdvice expressionAdvice = new ExpressionBasedPreInvocationAdvice();
         expressionAdvice.setExpressionHandler(getExpressionHandler());
-        decisionVoters.add(new SmallBunPreInvocationAuthorizationAdviceVoter(expressionAdvice));
+        decisionVoters.add(new PreInvocationAuthorizationAdviceVoter(expressionAdvice));
         //jsr250
-        decisionVoters.add(new SmallBunJsr250Voter());
+        decisionVoters.add(new Jsr250Voter());
         //role
-        SmallBunRoleVoter roleVoter = new SmallBunRoleVoter();
+        RoleVoter roleVoter = new RoleVoter();
         GrantedAuthorityDefaults grantedAuthorityDefaults = getSingleBeanOrNull(
             GrantedAuthorityDefaults.class);
         if (grantedAuthorityDefaults != null) {
@@ -101,7 +103,6 @@ public class SmallBunGlobalMethodSecurityConfiguration extends GlobalMethodSecur
     @Override
     protected AfterInvocationManager afterInvocationManager() {
         AfterInvocationProviderManager invocationProviderManager = new AfterInvocationProviderManager();
-        // SmallBunExpressionBasedPostInvocationAdvice
         ExpressionBasedPostInvocationAdvice postAdvice = new ExpressionBasedPostInvocationAdvice(
             getExpressionHandler());
         PostInvocationAdviceProvider postInvocationAdviceProvider = new PostInvocationAdviceProvider(

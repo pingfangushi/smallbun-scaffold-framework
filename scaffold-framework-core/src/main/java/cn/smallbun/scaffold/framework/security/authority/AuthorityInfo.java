@@ -15,32 +15,50 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cn.smallbun.scaffold.framework.security;
+package cn.smallbun.scaffold.framework.security.authority;
 
-import org.springframework.security.core.GrantedAuthority;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * 安全认证权限提供者
+ * 权限信息
  *
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/3/31 15:07
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/4/9 11:44
  */
-public interface SecurityAuthorizeProvider {
+@Data
+public class AuthorityInfo implements Serializable {
     /**
-     * 获取授权
-     *
-     * @param userId {@link String} 用户ID
-     * @return {@link List< GrantedAuthority >}
+     * 路由权限
      */
-    List<GrantedAuthority> getAuthority(String userId);
+    private List<AuthorityItem> routers;
+    /**
+     * 操作权限
+     */
+    private List<AuthorityItem> actions;
+    /**
+     * 接口权限
+     */
+    private List<AuthorityItem> interfaces;
 
     /**
-     * 获取授权
+     * 权限项
      *
-     * @param userId {@link String} 用户ID
-     * @return {@link AuthorityInfo}
+     * @author SanLi
+     * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on  2020/4/29
      */
-    AuthorityInfo getAuthorityInfo(String userId);
+    @Data
+    public static class AuthorityItem {
+        /**
+         * 授权
+         */
+        private String auth;
+        /**
+         * 描述
+         */
+        private String describe;
+
+    }
 }

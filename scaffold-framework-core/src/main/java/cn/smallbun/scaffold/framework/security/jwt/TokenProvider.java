@@ -17,8 +17,10 @@
  */
 package cn.smallbun.scaffold.framework.security.jwt;
 
+
 import cn.smallbun.scaffold.framework.configurer.SmallBunProperties;
-import cn.smallbun.scaffold.framework.security.SecurityAuthorizeProvider;
+import cn.smallbun.scaffold.framework.security.authority.AuthorityInfo;
+import cn.smallbun.scaffold.framework.security.authority.SecurityAuthorizeProvider;
 import cn.smallbun.scaffold.framework.security.domain.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -26,16 +28,15 @@ import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
-import java.util.List;
+
+import static cn.smallbun.scaffold.framework.security.utils.SecurityUtils.getGrantedAuthority;
 
 /**
  * 令牌提供者
@@ -64,8 +65,10 @@ public class TokenProvider implements InitializingBean {
      */
     private long                tokenValidityInMillisecondsForRememberMe;
 
-    public TokenProvider(SmallBunProperties properties) {
+    public TokenProvider(SmallBunProperties properties,
+                         SecurityAuthorizeProvider authorizeProvider) {
         this.security = properties.getSecurity();
+        this.authorizeProvider = authorizeProvider;
     }
 
     @Override
@@ -124,15 +127,25 @@ public class TokenProvider implements InitializingBean {
      */
     Authentication getAuthentication(String token) {
         Jws<Claims> parse = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-        //获取Claims
+        // 获取Claims
         Claims claims = parse.getBody();
-        //根据用户查询所有的权限
-        List<GrantedAuthority> authorities = authorizeProvider
-            .getAuthority(claims.get(USER_ID).toString());
+        // 根据用户查询所有的权限
+        AuthorityInfo authorities;
+        // 全局超级用户
+        if (security.getId().equals(claims.get(USER_ID).toString())) {
+            //获取所有权限信息
+            authorities = authorizeProvider.getAuthorityInfo();
+        }
+        // 普通用户
+        else {
+            //根据用户ID获取权限信息
+            authorities = authorizeProvider.getAuthorityInfo(claims.get(USER_ID).toString());
+        }
         //封装用户
-        User user = new User(claims.getSubject(), "", claims.get(USER_ID).toString(), authorities);
+        User user = new User(claims.getSubject(), claims.get(USER_ID).toString(), authorities);
         //返回认证
-        return new UsernamePasswordAuthenticationToken(user, token, authorities);
+        return new UsernamePasswordAuthenticationToken(user, token,
+            getGrantedAuthority(authorities));
     }
 
     /**
@@ -166,6 +179,5 @@ public class TokenProvider implements InitializingBean {
     /**
      * securityRoleProvider
      */
-    @Autowired
-    private SecurityAuthorizeProvider         authorizeProvider;
+    private final SecurityAuthorizeProvider         authorizeProvider;
 }

@@ -19,12 +19,14 @@ package cn.smallbun.scaffold.framework.configurer;
 
 import cn.smallbun.scaffold.framework.context.ApplicationContextHelp;
 import cn.smallbun.scaffold.framework.initialize.ContextInitListener;
+import cn.smallbun.scaffold.framework.security.authority.SecurityAuthorizeProvider;
 import cn.smallbun.scaffold.framework.security.jwt.JwtConfigurer;
 import cn.smallbun.scaffold.framework.security.jwt.JwtFilter;
 import cn.smallbun.scaffold.framework.security.jwt.TokenProvider;
 import cn.smallbun.scaffold.framework.security.listener.SecurityListener;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -48,6 +50,7 @@ import static com.google.code.kaptcha.Constants.*;
  * @author SanLi
  * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/11/30 21:07
  */
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @EnableConfigurationProperties(value = SmallBunProperties.class)
 @Configuration
 public class SmallBunConfigurer implements Serializable {
@@ -86,8 +89,7 @@ public class SmallBunConfigurer implements Serializable {
      */
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(value = SmallBunDefaults.DEFAULT_PREFIX
-                                   + ".captcha.enable", havingValue = "true")
+    @ConditionalOnProperty(prefix = SmallBunDefaults.DEFAULT_PREFIX, value = "captcha.enable", havingValue = "true")
     public DefaultKaptcha captchaProducer() {
         DefaultKaptcha captchaProducer = new DefaultKaptcha();
         SmallBunProperties.Captcha captcha = properties.getCaptcha();
@@ -99,7 +101,7 @@ public class SmallBunConfigurer implements Serializable {
         properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_SIZE, captcha.getTextProducerFontSize());
         properties.setProperty(KAPTCHA_OBSCURIFICATOR_IMPL, captcha.getTextProducerImpl());
         properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_LENGTH,
-            captcha.getTextProducerCharLength());
+                captcha.getTextProducerCharLength());
         properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_NAMES, captcha.getTextProducerFontNames());
         Config config = new Config(properties);
         captchaProducer.setConfig(config);
@@ -125,14 +127,27 @@ public class SmallBunConfigurer implements Serializable {
     }
 
     /**
+     * token提供者
+     *
+     * @return {@link TokenProvider}
+     */
+    @Bean
+    @ConditionalOnBean(value = {SecurityAuthorizeProvider.class})
+    @ConditionalOnMissingBean
+    public TokenProvider tokenProvider(SecurityAuthorizeProvider authorizeProvider) {
+        return new TokenProvider(properties, authorizeProvider);
+    }
+
+    /**
      * JwtConfigurer
      *
      * @return {@link JwtFilter}
      */
     @Bean
+    @ConditionalOnBean(value = {TokenProvider.class})
     @ConditionalOnMissingBean
-    public JwtConfigurer jwtFilter() {
-        return new JwtConfigurer(tokenProvider());
+    public JwtConfigurer jwtFilter(TokenProvider tokenProvider) {
+        return new JwtConfigurer(tokenProvider);
     }
 
     /**
@@ -147,17 +162,6 @@ public class SmallBunConfigurer implements Serializable {
     }
 
     /**
-     * token提供者
-     *
-     * @return {@link TokenProvider}
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public TokenProvider tokenProvider() {
-        return new TokenProvider(properties);
-    }
-
-    /**
      * AuthenticationEntryPoint
      *
      * @return {@link AuthenticationEntryPoint}
@@ -165,17 +169,17 @@ public class SmallBunConfigurer implements Serializable {
     @Bean
     public AuthenticationEntryPoint authenticationEntryPoint(HandlerExceptionResolver handlerExceptionResolver) {
         return (request, response, authException) -> handlerExceptionResolver
-            .resolveException(request, response, null, authException);
+                .resolveException(request, response, null, authException);
     }
 
     /**
-     * AccessDeineHandler
+     * AccessDeniedHandler
      *
      * @return {@link AccessDeniedHandler}
      */
     @Bean
     public AccessDeniedHandler accessDeniedHandler(HandlerExceptionResolver handlerExceptionResolver) {
         return (request, response, accessDeniedException) -> handlerExceptionResolver
-            .resolveException(request, response, null, accessDeniedException);
+                .resolveException(request, response, null, accessDeniedException);
     }
 }

@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /**
- * 方法安全配置
+ * 权限相关信息
+ *
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/18 13:52
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/4/29 23:20
  */
-package cn.smallbun.scaffold.framework.security.method.configuration;
+package cn.smallbun.scaffold.framework.security.authority;

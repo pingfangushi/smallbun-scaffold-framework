@@ -15,44 +15,48 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cn.smallbun.scaffold.framework.security;
+package cn.smallbun.scaffold.framework.security.authority;
 
-import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 权限IFNO
+ * SecurityAuthorizeProvider
  *
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/4/9 11:44
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/3/31 15:07
  */
-@Data
-public class AuthorityInfo implements Serializable {
-    /**
-     * 路由权限
-     */
-    private List<AuthorityItem> routers;
-    /**
-     * 操作权限
-     */
-    private List<AuthorityItem> actions;
-    /**
-     * 接口权限
-     */
-    private List<AuthorityItem> interfaces;
+public interface SecurityAuthorizeProvider extends Serializable {
 
-    @Data
-    public static class AuthorityItem {
-        /**
-         * 授权
-         */
-        private String auth;
-        /**
-         * 描述
-         */
-        private String describe;
+    /**
+     * 根据用户ID获取授权
+     *
+     * @param id {@link String} 用户ID
+     * @return {@link AuthorityInfo}
+     */
+    AuthorityInfo getAuthorityInfo(String id);
 
-    }
+    /**
+     * 获取全部授权信息
+     *
+     * @return {@link AuthorityInfo}
+     */
+    AuthorityInfo getAuthorityInfo();
+
+    /**
+     * 获取所有授权信息
+     *
+     * @return {@link List<GrantedAuthority>}
+     */
+    List<GrantedAuthority> getGrantedAuthority();
+
+    /**
+     * 通过用户ID获取授予的权限
+     *
+     * @param id {@link String} 用户ID
+     * @return {@link List<GrantedAuthority>}
+     */
+    List<GrantedAuthority> getGrantedAuthority(String id);
 }

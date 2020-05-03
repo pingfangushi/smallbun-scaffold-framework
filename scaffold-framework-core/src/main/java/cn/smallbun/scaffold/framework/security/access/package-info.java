@@ -16,8 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /**
- * voter
  * @author SanLi
- * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2019/12/18 13:52
+ * Created by qinggang.zuo@gmail.com / 2689170096@qq.com on 2020/5/2 21:36
  */
-package cn.smallbun.scaffold.framework.security.method.voter;
+package cn.smallbun.scaffold.framework.security.access;

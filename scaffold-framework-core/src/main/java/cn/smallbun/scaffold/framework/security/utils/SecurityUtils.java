@@ -17,12 +17,18 @@
  */
 package cn.smallbun.scaffold.framework.security.utils;
 
+import com.google.common.collect.Lists;
+import cn.smallbun.scaffold.framework.security.authority.AuthorityInfo;
 import cn.smallbun.scaffold.framework.security.domain.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Spring Security的实用程序类。
@@ -95,5 +101,49 @@ public final class SecurityUtils {
             .map(authentication -> authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(authority)))
             .orElse(false);
+    }
+
+    /**
+     * 获取权限信息
+     *
+     * @return {@link AuthorityInfo}
+     */
+    public static AuthorityInfo getAuthorityInfo() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        User user = (User) securityContext.getAuthentication().getPrincipal();
+        return user.getAuthorityInfo();
+    }
+
+    /**
+     * 获取权限
+     *
+     * @param info {@link AuthorityInfo}
+     * @return {@link List <GrantedAuthority>}
+     */
+    public static List<GrantedAuthority> getGrantedAuthority(AuthorityInfo info) {
+        //操作权限
+        List<String> auth = info.getActions().stream().map(AuthorityInfo.AuthorityItem::getAuth)
+            .collect(Collectors.toList());
+        //接口权限
+        auth.addAll(info.getInterfaces().stream().map(AuthorityInfo.AuthorityItem::getAuth)
+            .collect(Collectors.toList()));
+        //路由权限
+        auth.addAll(info.getRouters().stream().map(AuthorityInfo.AuthorityItem::getAuth)
+            .collect(Collectors.toList()));
+        List<GrantedAuthority> authorities = Lists.newArrayList();
+        for (String s : auth) {
+            authorities.addAll(AuthorityUtils.createAuthorityList(s));
+        }
+        return authorities;
+    }
+
+    /**
+     * 是否为系统用户
+     *
+     * @param username 用户名
+     * @return true false
+     */
+    public static boolean userAvailable(String username) {
+        return false;
     }
 }
